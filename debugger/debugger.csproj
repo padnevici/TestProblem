@@ -62,6 +62,14 @@
       <Project>{aea91865-2555-45b5-8516-a00b471de20a}</Project>
       <Name>Logger</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TopTal_Framework\TopTal_Framework.csproj">
+      <Project>{ce90f6a6-473c-459d-9836-3e957b51de89}</Project>
+      <Name>TopTal_Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TopTal_TestCases\TopTal_TestCases.csproj">
+      <Project>{e89b9d08-dd2f-4326-b72b-f3634799b11f}</Project>
+      <Name>TopTal_TestCases</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

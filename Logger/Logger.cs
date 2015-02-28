@@ -8,12 +8,12 @@ using log4net.Config;
 
 namespace Logger
 {
-    public class Logger
+    public class Log
     {
-        private static Logger instance;
+        private static Log instance;
         private static readonly ILog log = LogManager.GetLogger(typeof(Object));
 
-        private Logger()
+        private Log()
         {
             string config = System.IO.File.ReadAllText("Log4netCFG.txt");
             TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
@@ -50,13 +50,13 @@ namespace Logger
         }
 
 
-        public static Logger Instance
+        public static Log Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new Logger();
+                    instance = new Log();
                 }
                 return instance;
             }

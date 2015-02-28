@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configs>
+  <!--please use only Chrome, Firefox, IE-->
+  <mainBrowser>Chrome</mainBrowser>
+  <!-- /site/index should be included in url-->
+  <defaultURL>http://toptal:staging@staging.toptal.net</defaultURL>
+  <defaultAccount>
+    <username>slava.connectpal.com@mailinator.com</username>
+    <password>password</password>
+  </defaultAccount>
+</configs>
+
