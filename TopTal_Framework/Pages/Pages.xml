@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages>
+  <sitePages>
+    <homePage name="Home" title ="Toptal: Top Developers, Custom Software Development">
+    </homePage>
+
+    <loginPage name="Login" title ="Login | Toptal">
+    </loginPage>
+  </sitePages>
+
+  <backendPages>
+  </backendPages>
+</pages>

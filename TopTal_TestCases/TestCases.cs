@@ -13,5 +13,10 @@ namespace TopTal_TestCases
     [TestFixture]
     public class TestCases : TestBase
     {
+        [Test]
+        public void Test_01()
+        {
+            Pages.SitePages.Login.Login(Config.DefaultUser);
+        }
     }
 }

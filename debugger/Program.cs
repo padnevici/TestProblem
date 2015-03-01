@@ -14,9 +14,10 @@ namespace debugger
         {
             Logger.Log log = Logger.Log.Instance;
             TestBase.Initialize();
-
+            TestCases tests = new TestCases();
             try
             {
+                tests.Test_01();
 
 
             }

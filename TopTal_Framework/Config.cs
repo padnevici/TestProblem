@@ -16,7 +16,6 @@ namespace TopTal_Framework
         private XPathNavigator _nav;
         private static Log log = Log.Instance;
 
-
         #region internal stuffs
         private Config()
         {
@@ -45,7 +44,7 @@ namespace TopTal_Framework
             }
             catch (Exception ex)
             {
-                log.Warn(string.Format("Cannot get value using xpath [{1}]", xPath));
+                log.Warn(string.Format("Cannot get value using xpath [{0}]", xPath));
                 log.Warn(ex.Message);
                 log.Warn(ex.StackTrace);
             }
@@ -67,17 +66,32 @@ namespace TopTal_Framework
 
         public static string DefaultUserName
         {
-            get { return Instance.GetValueByXPath("configs/materAdmin/username"); }
+            get { return Instance.GetValueByXPath("configs/defaultAccount/username"); }
         }
 
         public static string DefaultUserPassword
         {
-            get { return Instance.GetValueByXPath("configs/materAdmin/password"); }
+            get { return Instance.GetValueByXPath("configs/defaultAccount/password"); }
         }
 
         public static User DefaultUser
         {
             get { return new User() { Username = DefaultUserName, Password = DefaultUserPassword }; }
+        }
+
+        public static string WebProtectionUsrName
+        {
+            get { return Instance.GetValueByXPath("configs/webProtection/username"); }
+        }
+
+        public static string WebProtectionUsrPwd
+        {
+            get { return Instance.GetValueByXPath("configs/webProtection/password"); }
+        }
+
+        public static User WebProtectionUser
+        {
+            get { return new User() { Username = WebProtectionUsrName, Password = WebProtectionUsrPwd }; }
         }
         #endregion
     }

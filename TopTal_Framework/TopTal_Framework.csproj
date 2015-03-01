@@ -53,7 +53,11 @@
     <Compile Include="Config.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Generators.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\Pages.cs" />
+    <Compile Include="Pages\PagesXML.cs" />
+    <Compile Include="Pages\TopMenuNavigationPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
@@ -67,6 +71,10 @@
     </Content>
     <Content Include="config.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Pages\Pages.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +82,17 @@
       <Project>{aea91865-2555-45b5-8516-a00b471de20a}</Project>
       <Name>Logger</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AutoItX3Lib">
+      <Guid>{F8937E53-D444-4E71-9275-35B64210CC3B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>True</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
