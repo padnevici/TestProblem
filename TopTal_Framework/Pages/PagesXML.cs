@@ -90,7 +90,55 @@ namespace TopTal_Framework
         #region Backend Pages
         public class BackEndPages
         {
-            
+            public class HomeDashboard
+            {
+                public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/homeDashboardPage", "name"); } }
+                public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/homeDashboardPage", "title"); } }
+            }
+
+            public class Jobs
+            {
+                public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/jobsPage", "name"); } }
+                public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/jobsPage", "title"); } }
+            }
+
+            public class NewJobWizard
+            {
+                public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage", "name"); } }
+                public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage", "title"); } }
+
+                public class Step1_BasicInfo
+                {
+                    public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/basicInfoPage", "name"); } }
+                    public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/basicInfoPage", "title"); } }
+                    public static string EmptyTitleErr { get { return PagesXML.Instance.GetValueByXPath("//newJobWizardPage/basicInfoPage/errorMsgs/emptyField"); } }
+                    public static string EmptyDescriptionErr { get { return PagesXML.Instance.GetValueByXPath("//newJobWizardPage/basicInfoPage/errorMsgs/emptyField"); } }
+                }
+
+                public class Step2_Details
+                {
+                    public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/detailsPage", "name"); } }
+                    public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/detailsPage", "title"); } }
+                }
+
+                public class Step3_RequiredSkills
+                {
+                    public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/requiredSkillsPage", "name"); } }
+                    public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/requiredSkillsPage", "title"); } }
+                }
+
+                public class Step4_Confirm
+                {
+                    public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/confirmPage", "name"); } }
+                    public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/confirmPage", "title"); } }
+                }
+
+                public class Step5_TechCall
+                {
+                    public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/techCallPage", "name"); } }
+                    public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/techCallPage", "title"); } }
+                }
+            }
         }
         #endregion
     }

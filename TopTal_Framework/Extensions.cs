@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using Logger;
+using TopTal_Framework.Generators;
+using System.Reflection;
 
 namespace TopTal_Framework
 {
@@ -41,5 +43,22 @@ namespace TopTal_Framework
                 return false;
             }
         }
+
+        public static string GetValue(this Job.EstimatedLength estimatedLength)
+        {
+            var type = estimatedLength.GetType();
+            var memInfo = type.GetMember(estimatedLength.ToString());
+            var attributes = memInfo[0].GetCustomAttributes(typeof(ValueAttribute), false);
+            return (attributes.Length > 0) ? ((ValueAttribute)attributes[0])._Value : null;
+        }
+
+
+        //public static T GetAttributeOfType<T>(this Enum enumVal) where T : System.Attribute
+        //{
+        //    var type = enumVal.GetType();
+        //    var memInfo = type.GetMember(enumVal.ToString());
+        //    var attributes = memInfo[0].GetCustomAttributes(typeof(T), false);
+        //    return (attributes.Length > 0) ? (T)attributes[0] : null;
+        //}
     }
 }

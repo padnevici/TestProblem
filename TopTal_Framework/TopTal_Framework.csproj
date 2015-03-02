@@ -52,12 +52,18 @@
     <Compile Include="Browser.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="Generators.cs" />
-    <Compile Include="Pages\LoginPage.cs" />
-    <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Generators\JobGenerator.cs" />
+    <Compile Include="Generators\Generator.cs" />
+    <Compile Include="Pages\BackendPages\NewJobWizardBasicInfoPage.cs" />
+    <Compile Include="Pages\BackendPages\JobsPage.cs" />
+    <Compile Include="Pages\BackendPages\HomeDashboardPage.cs" />
+    <Compile Include="Pages\BackendPages\LeftMenuNavigationPage.cs" />
+    <Compile Include="Pages\BackendPages\TopMenuPage.cs" />
+    <Compile Include="Pages\SitePages\LoginPage.cs" />
+    <Compile Include="Pages\SitePages\HomePage.cs" />
     <Compile Include="Pages\Pages.cs" />
     <Compile Include="Pages\PagesXML.cs" />
-    <Compile Include="Pages\TopMenuNavigationPage.cs" />
+    <Compile Include="Pages\SitePages\TopMenuNavigationPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestBase.cs" />
   </ItemGroup>
@@ -94,6 +100,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

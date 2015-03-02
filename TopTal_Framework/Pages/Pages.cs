@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Support.PageObjects;
+using TopTal_Framework.SitePages;
+using TopTal_Framework.BackendPages;
 
 namespace TopTal_Framework
 {
@@ -39,6 +41,33 @@ namespace TopTal_Framework
         #region BackendPages
         public static class BackendPages
         {
+            public static TopMenuPage TopMenu
+            {
+                get { return GetPage<TopMenuPage>(); }
+            }
+
+            public static LeftMenuNavigationPage LeftMenuNavigation
+            {
+                get { return GetPage<LeftMenuNavigationPage>(); }
+            }
+
+            public static HomeDashboardPage HomeDashboard
+            {
+                get { return GetPage<HomeDashboardPage>(); }
+            }
+
+            public static JobsPage Jobs
+            {
+                get { return GetPage<JobsPage>(); }
+            }
+
+            public static class NewJobWizardPages
+            {
+                public static NewJobWizardBasicInfoPage BasicInfo
+                {
+                    get { return GetPage<NewJobWizardBasicInfoPage>(); }
+                }
+            }
         } 
         #endregion
     }

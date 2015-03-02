@@ -9,6 +9,7 @@ using System;
 using Logger;
 using AutoItX3Lib;
 using System.Runtime.InteropServices;
+using TopTal_Framework.Generators;
 
 namespace TopTal_Framework
 {
@@ -40,8 +41,8 @@ namespace TopTal_Framework
             webDriver = new ChromeDriver();
             SetWindowSize();
             GotoEnv();
-            PassChromeAuthentificationPopup();
-            PassChromeAuthentificationPopup();
+            PassAuthentificationPopup("staging.toptal.net - Google Chrome");
+            PassAuthentificationPopup("Toptal: Top Developers, Custom Software Development - Google Chrome");
             Pages.SitePages.Home.CheckAndCloseAddPopup();
         }
 
@@ -50,43 +51,33 @@ namespace TopTal_Framework
             webDriver = new FirefoxDriver();
             SetWindowSize();
             GotoEnv();
-            PassFirefoxAuthentificationPopup();
-            PassFirefoxAuthentificationPopup();
+            PassAuthentificationPopup("Authentication Required");
+            PassAuthentificationPopup("Authentication Required");
             Pages.SitePages.Home.CheckAndCloseAddPopup();
         }
 
         private static void SetWindowSize()
         {
-            WebDriver.Manage().Window.Position = new System.Drawing.Point(0, 0);
-            WebDriver.Manage().Window.Maximize();
-            WebDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(sleepTime));
+            webDriver.Manage().Window.Position = new System.Drawing.Point(0, 0);
+            webDriver.Manage().Window.Maximize();
+            webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(sleepTime));
         }
 
-        private static void PassChromeAuthentificationPopup()
+        private static void PassAuthentificationPopup(string title)
         {
             var AutoIT = new AutoItX3();
-            if (AutoIT.WinWait("staging.toptal.net - Google Chrome", "", 10) != 0)
+            if (AutoIT.WinWait(title, "", 10) != 0)
             {
+                log.Debug("Found Authentication pop up. Passing it.");
+                AutoIT.WinActivate(title);
                 AutoIT.Send(Config.WebProtectionUser.Username);
                 AutoIT.Send("{TAB}");
                 AutoIT.Send(Config.WebProtectionUser.Password);
                 AutoIT.Send("{ENTER}");
                 Browser.ImplicitWait(5000);
             }
-        }
-
-        private static void PassFirefoxAuthentificationPopup()
-        {
-            var AutoIT = new AutoItX3();
-            if (AutoIT.WinWait("Authentication Required", "", 10) != 0)
-            {
-                AutoIT.WinActivate("Authentication Required");
-                AutoIT.Send(Config.WebProtectionUser.Username);
-                AutoIT.Send("{TAB}");
-                AutoIT.Send(Config.WebProtectionUser.Password);
-                AutoIT.Send("{ENTER}");
-                Browser.ImplicitWait(5000);
-            }
+            else
+                log.Debug("The Authentication pop up is not found");
         }
 
         private static void GotoEnv()
@@ -159,13 +150,15 @@ namespace TopTal_Framework
         public static void Close()
         {
             log.Info(string.Format("Closing the browser."));
-            webDriver.Close();
+            if (webDriver != null)
+                webDriver.Close();
         }
 
         public static void Quit()
         {
             log.Info(string.Format("Quiting the browser."));
-            webDriver.Quit();
+            if (webDriver != null)
+                webDriver.Quit();
         }
 
         public static void ImplicitWait()
@@ -185,7 +178,7 @@ namespace TopTal_Framework
 
         public static void TakeAScreenshot()
         {
-            string name = string.Format("Images/img{0}.png", Generators.GetEpochTime());
+            string name = string.Format("Images/img{0}.png", Generator.GetEpochTime());
             log.Info(string.Format("Collecting a screnshot: [{0}]", name));
             try
             {

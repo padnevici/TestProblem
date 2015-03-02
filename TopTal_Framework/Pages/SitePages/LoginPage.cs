@@ -8,8 +8,9 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
+using TopTal_Framework.Generators;
 
-namespace TopTal_Framework
+namespace TopTal_Framework.SitePages
 {
     public class LoginPage
     {

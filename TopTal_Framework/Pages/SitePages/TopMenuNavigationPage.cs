@@ -9,7 +9,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 
-namespace TopTal_Framework
+namespace TopTal_Framework.SitePages
 {
     public class TopMenuNavigationPage
     {

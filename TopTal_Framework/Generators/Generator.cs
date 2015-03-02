@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TopTal_Framework
+namespace TopTal_Framework.Generators
 {
-    public class Generators
+    public class Generator
     {
         public static string GetEpochTime()
         {
@@ -17,7 +17,7 @@ namespace TopTal_Framework
 
         public static string GenerateEmail()
         {
-            return "random" + Generators.GetEpochTime() + "@random.com";
+            return "random" + Generator.GetEpochTime() + "@random.com";
         }
 
         public static string GeneratePhone()
@@ -27,7 +27,7 @@ namespace TopTal_Framework
 
         public static string GenerateName()
         {
-            return "randomName" + Generators.GetEpochTime();
+            return "randomName" + Generator.GetEpochTime();
         }
 
         public static string GenerateInvalidEmail()
@@ -37,13 +37,13 @@ namespace TopTal_Framework
             switch (number)
             {
                 case 0:
-                    return "random" + Generators.GetEpochTime() + "invalid.com";
+                    return "random" + Generator.GetEpochTime() + "invalid.com";
                 case 1:
-                    return "random" + Generators.GetEpochTime() + "@invalid";
+                    return "random" + Generator.GetEpochTime() + "@invalid";
                 case 3:
-                    return Generators.GetEpochTime();
+                    return Generator.GetEpochTime();
                 default:
-                    return "random" + Generators.GetEpochTime() + "invalid.com";
+                    return "random" + Generator.GetEpochTime() + "invalid.com";
             }
         }
 
@@ -56,9 +56,9 @@ namespace TopTal_Framework
                 case 0:
                     return "invalid";
                 case 1:
-                    return "invalid" + Generators.GetEpochTime();
+                    return "invalid" + Generator.GetEpochTime();
                 case 3:
-                    return Generators.GetEpochTime() + ")(*&^%$#@!";
+                    return Generator.GetEpochTime() + ")(*&^%$#@!";
                 default:
                     return r.Next(1000, 100000).ToString();
             }

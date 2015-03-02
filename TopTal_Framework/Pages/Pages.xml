@@ -9,5 +9,30 @@
   </sitePages>
 
   <backendPages>
+    <homeDashboardPage name="Home Dashboard" title ="Current Jobs">
+    </homeDashboardPage>
+
+    <jobsPage name="Jobs" title ="Jobs">
+    </jobsPage>
+
+    <newJobWizardPage name="New Job Wizard" title ="Add New Job">
+      <basicInfoPage name="Step 1 - Basic Info" title ="Basic Info">
+        <errorMsgs>
+          <emptyField>You can't leave this empty</emptyField>
+        </errorMsgs>
+        </basicInfoPage>
+
+      <detailsPage name="Step 2 - Details" title ="Details">
+      </detailsPage>
+
+      <requiredSkillsPage name="Step 3 - Required Skills" title ="Required Skills">
+      </requiredSkillsPage>
+
+      <confirmPage name="Step 4 - Confirm" title ="Confirm">
+      </confirmPage>
+
+      <techCallPage name="Step 5 - Tech Call" title ="Tech Call">
+      </techCallPage>
+    </newJobWizardPage>
   </backendPages>
 </pages>
