@@ -119,6 +119,10 @@ namespace TopTal_Framework
                 {
                     public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/detailsPage", "name"); } }
                     public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/detailsPage", "title"); } }
+                    public static string EmptyDesiredStartDateErr { get { return PagesXML.BackEndPages.NewJobWizard.Step1_BasicInfo.EmptyTitleErr; } }
+                    public static string EmptyEstimatedLengthErr { get { return PagesXML.BackEndPages.NewJobWizard.Step1_BasicInfo.EmptyTitleErr; } }
+                    public static string EmptySpokenLanguageErr { get { return PagesXML.Instance.GetValueByXPath("//newJobWizardPage/detailsPage/errorMsgs/emptyLanguagesField"); } }
+                    public static string InvalidDesiredStartDateErr { get { return PagesXML.Instance.GetValueByXPath("//newJobWizardPage/detailsPage/errorMsgs/invalidDateField"); } }
                 }
 
                 public class Step3_RequiredSkills

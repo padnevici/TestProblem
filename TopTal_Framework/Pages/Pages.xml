@@ -23,6 +23,10 @@
         </basicInfoPage>
 
       <detailsPage name="Step 2 - Details" title ="Details">
+        <errorMsgs>
+          <emptyLanguagesField>Languages: You can't leave this empty</emptyLanguagesField>
+          <invalidDateField>Invalid date format</invalidDateField>
+        </errorMsgs>
       </detailsPage>
 
       <requiredSkillsPage name="Step 3 - Required Skills" title ="Required Skills">

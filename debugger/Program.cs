@@ -13,7 +13,7 @@ namespace debugger
         static void Main(string[] args)
         {
             Logger.Log log = Logger.Log.Instance;
-            //TestBase.Initialize();
+            TestBase.Initialize();
             TestCases tests = new TestCases();
             try
             {

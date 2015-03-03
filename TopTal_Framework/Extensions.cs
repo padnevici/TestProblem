@@ -52,6 +52,21 @@ namespace TopTal_Framework
             return (attributes.Length > 0) ? ((ValueAttribute)attributes[0])._Value : null;
         }
 
+        public static string GetValue(this Job.TimeZones timeZone)
+        {
+            var type = timeZone.GetType();
+            var memInfo = type.GetMember(timeZone.ToString());
+            var attributes = memInfo[0].GetCustomAttributes(typeof(ValueAttribute), false);
+            return (attributes.Length > 0) ? ((ValueAttribute)attributes[0])._Value : null;
+        }
+
+        public static string GetValue(this Job.HoursOverlap houseOverlap)
+        {
+            var type = houseOverlap.GetType();
+            var memInfo = type.GetMember(houseOverlap.ToString());
+            var attributes = memInfo[0].GetCustomAttributes(typeof(ValueAttribute), false);
+            return (attributes.Length > 0) ? ((ValueAttribute)attributes[0])._Value : null;
+        }
 
         //public static T GetAttributeOfType<T>(this Enum enumVal) where T : System.Attribute
         //{
