@@ -1,0 +1,19 @@
+02/27/2015 [09:40 PM - 11:20 PM]
+- Created structure of framework (Logger, framework and test case executer)
+- Created config file for already known values like (user, password and url of env. this is need for avoiding hard coding) 
+- Added whole project to the Version Control (GIT local padnevici/padnevici@gmail.com - master branch)
+
+02/28/2015 [04:00 PM - 10:00 PM]
+- Found Solution for Authentification Popup window
+- Added and described necessary methods for following pages: Home, TopNavigation, Login.
+- Added an XML file with details for each page.
+- Create test cases as test plan which will be followed during automation.
+
+03/01/2015 [10:00 AM - 01:00 PM, 07:00 PM - 09:30 PM]
+- Added and described necessary methods for following pages: home dashboard, jobs, new job wizard - step 1, Top Navigation, Left menu navigation.
+- Added more parameters for Job object. Updated Job generator method per new added props
+
+03/02/2015 [09:00 AM - 10:30 PM]
+- Added and described necessary methods for following page: job wizard - step 2 (not fully, to be added more)
+
+regsvr32 AutoItX3.dll
