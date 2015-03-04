@@ -94,7 +94,7 @@ namespace TopTal_Framework.BackendPages
         #endregion
 
         #region Enter/Select data
-        private void SelectDesiredCommitment(Job job)
+        public void SelectDesiredCommitment(Job job)
         {
             log.Debug(string.Format("Selecting desired commitment [{0}]", job._DesiredCommitment));
             SelectElement select = new SelectElement(desiredCommitmentDropDown);
@@ -102,7 +102,7 @@ namespace TopTal_Framework.BackendPages
             Browser.ImplicitWait();
         }
 
-        private void SelectDesiredTimeZonePreference(Job job)
+        public void SelectDesiredTimeZonePreference(Job job)
         {
             log.Debug(string.Format("Selecting time zone preference [{0}]", job._TimeZonePreference));
             if (job._TimeZonePreference)
@@ -112,7 +112,7 @@ namespace TopTal_Framework.BackendPages
             Browser.ImplicitWait();
         }
 
-        private void SelectTimeZone(Job job)
+        public void SelectTimeZone(Job job)
         {
             if (job._TimeZonePreference)
             {
@@ -123,7 +123,7 @@ namespace TopTal_Framework.BackendPages
             }
         }
 
-        private void SelectHouseOverlap(Job job)
+        public void SelectHouseOverlap(Job job)
         {
             if (job._TimeZonePreference)
             {
@@ -134,12 +134,12 @@ namespace TopTal_Framework.BackendPages
             }
         }
 
-        private void EnterDesiredStartDate(Job job)
+        public void EnterDesiredStartDate(Job job)
         {
             EnterDesiredStartDate(job._DesiredStartDate.ToString("yyyy-MM-dd"));
         }
 
-        private void EnterDesiredStartDate(string date)
+        public void EnterDesiredStartDate(string date)
         {
             log.Debug(string.Format("Entering desired date [{0}]", date));
             desiredStartDateTxtBox.Clear();
@@ -147,7 +147,7 @@ namespace TopTal_Framework.BackendPages
             Browser.ImplicitWait();
         }
 
-        private void SelectEstimatedLength(Job job)
+        public void SelectEstimatedLength(Job job)
         {
             log.Debug(string.Format("Selecting estimate length [{0}]", job._EstimatedLength));
             SelectElement select = new SelectElement(estimatedLengthDropDown);
@@ -155,7 +155,7 @@ namespace TopTal_Framework.BackendPages
             Browser.ImplicitWait();
         }
 
-        private void EnterLanguages(Job job)
+        public void EnterLanguages(Job job)
         {
             log.Debug(string.Format("Entering spoken languages"));
             foreach (Job.SpokenLanguages lang in job._SpokenLanguages)
@@ -192,15 +192,6 @@ namespace TopTal_Framework.BackendPages
             }
         }
 
-        #region Check And Do
-        private void CheckIfCorrectPageAndNavigate()
-        {
-            if (IsAtStep())
-                return;
-            else
-                Goto();
-        } 
-        #endregion
 
         public void CheckForErrors()
         {
@@ -231,27 +222,20 @@ namespace TopTal_Framework.BackendPages
             log.Info(string.Format("Validation errors are appear/disappear correctly"));
         }
 
-        public void Goto()
-        {
-            log.Info(string.Format("Navigating to [{0}] page", PagesXML.BackEndPages.NewJobWizard.Name));
-            Pages.BackendPages.TopMenu.ClickOnAddNewJob();
-            Browser.ImplicitWait();
-        }
-
         public bool IsAtStep()
         {
-            log.Info(string.Format("Checking title for [{0}] page", PagesXML.BackEndPages.NewJobWizard.Step1_BasicInfo.Name));
+            log.Info(string.Format("Checking title for [{0}] page", PagesXML.BackEndPages.NewJobWizard.Step2_Details.Name));
 
             if (stepTitle.ExistsAndDisplayed())
             {
-                bool result = stepTitle.Text.Contains(string.Format(PagesXML.BackEndPages.NewJobWizard.Step1_BasicInfo.Title));
+                bool result = stepTitle.Text.Contains(string.Format(PagesXML.BackEndPages.NewJobWizard.Step2_Details.Title));
                 if (result)
                 {
-                    log.Info(string.Format("Title for [{0}] page is correct", PagesXML.BackEndPages.NewJobWizard.Step1_BasicInfo.Name));
+                    log.Info(string.Format("Title for [{0}] enterpage is correct", PagesXML.BackEndPages.NewJobWizard.Step2_Details.Name));
                     return result;
                 }
             }
-            log.Info(string.Format("Title for [{0}] page is not correct", PagesXML.BackEndPages.NewJobWizard.Step1_BasicInfo.Name));
+            log.Info(string.Format("Title for [{0}] page is not correct", PagesXML.BackEndPages.NewJobWizard.Step2_Details.Name));
             return false;
         }
     }

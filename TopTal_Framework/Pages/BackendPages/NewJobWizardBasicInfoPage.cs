@@ -60,7 +60,7 @@ namespace TopTal_Framework.BackendPages
         #endregion
 
         #region Enter data
-        protected void EnterTitle(Job job)
+        public void EnterTitle(Job job)
         {
             log.Debug(string.Format("Entering job title [{0}]", job._Title));
             titleTxtBox.Clear();
@@ -68,7 +68,7 @@ namespace TopTal_Framework.BackendPages
             Browser.ImplicitWait();
         }
 
-        protected void EnterDescription(Job job)
+        public void EnterDescription(Job job)
         {
             log.Debug(string.Format("Entering job description [{0}]", job._Description));
             descriptionTxtBox.Clear();
@@ -86,6 +86,7 @@ namespace TopTal_Framework.BackendPages
             ClickOnNext();
         }
 
+        #region Check and do
         private void CheckIfCorrectPageAndNavigate()
         {
             if (IsAtStep())
@@ -93,7 +94,9 @@ namespace TopTal_Framework.BackendPages
             else
                 Goto();
         } 
+        #endregion
 
+        #region Checks
         public void CheckForErrors()
         {
             log.Info(string.Format("Checking for errors"));
@@ -117,13 +120,6 @@ namespace TopTal_Framework.BackendPages
             log.Info(string.Format("Validation errors are appear/disappear correctly"));
         }
 
-        public void Goto()
-        {
-            log.Info(string.Format("Navigating to [{0}] page", PagesXML.BackEndPages.NewJobWizard.Name));
-            Pages.BackendPages.TopMenu.ClickOnAddNewJob();
-            Browser.ImplicitWait();
-        }
-
         public bool IsAtStep()
         {
             log.Info(string.Format("Checking title for [{0}] page", PagesXML.BackEndPages.NewJobWizard.Step1_BasicInfo.Name));
@@ -139,6 +135,14 @@ namespace TopTal_Framework.BackendPages
             }
             log.Info(string.Format("Title for [{0}] page is not correct", PagesXML.BackEndPages.NewJobWizard.Step1_BasicInfo.Name));
             return false;
+        } 
+        #endregion
+
+        public void Goto()
+        {
+            log.Info(string.Format("Navigating to [{0}] page", PagesXML.BackEndPages.NewJobWizard.Name));
+            Pages.BackendPages.TopMenu.ClickOnAddNewJob();
+            Browser.ImplicitWait();
         }
     }
 }

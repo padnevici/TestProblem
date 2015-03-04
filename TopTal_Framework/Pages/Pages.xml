@@ -30,6 +30,9 @@
       </detailsPage>
 
       <requiredSkillsPage name="Step 3 - Required Skills" title ="Required Skills">
+        <errorMsgs>
+          <emptySkillField>You need to specify at least one skill</emptySkillField>
+        </errorMsgs>
       </requiredSkillsPage>
 
       <confirmPage name="Step 4 - Confirm" title ="Confirm">

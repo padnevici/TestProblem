@@ -2,6 +2,7 @@
 using System.Reflection;
 using System;
 using Logger;
+using TopTal_Framework.Generators;
 
 namespace TopTal_Framework
 {
@@ -14,6 +15,7 @@ namespace TopTal_Framework
         public static void Initialize()
         {
             Browser.Initialize();
+            JobGenerator.Initialize();
         }
 
         [TestFixtureTearDown]

@@ -129,6 +129,7 @@ namespace TopTal_Framework
                 {
                     public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/requiredSkillsPage", "name"); } }
                     public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/requiredSkillsPage", "title"); } }
+                    public static string EmptySkillErr { get { return PagesXML.Instance.GetValueByXPath("//backendPages/newJobWizardPage/requiredSkillsPage/errorMsgs/emptySkillField"); } }
                 }
 
                 public class Step4_Confirm

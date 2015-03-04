@@ -54,7 +54,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="Generators\JobGenerator.cs" />
     <Compile Include="Generators\Generator.cs" />
-    <Compile Include="Pages\BackendPages\NewJobWizardDetailsPagу.cs" />
+    <Compile Include="Pages\BackendPages\NewJobWizardRequiredSkillsPage.cs" />
+    <Compile Include="Pages\BackendPages\NewJobWizardDetailsPage.cs" />
     <Compile Include="Pages\BackendPages\NewJobWizardBasicInfoPage.cs" />
     <Compile Include="Pages\BackendPages\JobsPage.cs" />
     <Compile Include="Pages\BackendPages\HomeDashboardPage.cs" />

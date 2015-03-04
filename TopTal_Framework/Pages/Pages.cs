@@ -72,6 +72,11 @@ namespace TopTal_Framework
                 {
                     get { return GetPage<NewJobWizardDetailsPage>(); }
                 }
+
+                public static NewJobWizardRequiredSkillsPage RequiredSkills
+                {
+                    get { return GetPage<NewJobWizardRequiredSkillsPage>(); }
+                }
             }
         } 
         #endregion

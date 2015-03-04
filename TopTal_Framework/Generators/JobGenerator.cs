@@ -3,20 +3,65 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Logger;
 
 namespace TopTal_Framework.Generators
 {
     public class JobGenerator
     {
         public static Job LastGeneratedJob;
+        private static List<Skill> _skills = new List<Skill>();
+        private static Log log = Log.Instance;
 
         public static void Initialize()
         {
             LastGeneratedJob = null;
+
+            #region Init table of skills
+            //(I have used initialisation in this way because I do not know the all values. It is better to keep such data in local db or xml file. As for test problem it is enough)
+            _skills.Add(new Skill() { Name = "PHP", SkillType = Skill.Type.Languages, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "C#", SkillType = Skill.Type.Languages, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Java", SkillType = Skill.Type.Languages, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "SQL", SkillType = Skill.Type.Languages, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Ruby", SkillType = Skill.Type.Languages, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Python", SkillType = Skill.Type.Languages, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Django", SkillType = Skill.Type.Frameworks, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "CakePHP", SkillType = Skill.Type.Frameworks, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Ruby on Rails", SkillType = Skill.Type.Frameworks, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Selenium", SkillType = Skill.Type.Frameworks, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Facebook API", SkillType = Skill.Type.Libraries_APIs, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Selenium WebDriver", SkillType = Skill.Type.Libraries_APIs, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "jQuery", SkillType = Skill.Type.Libraries_APIs, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "ASP", SkillType = Skill.Type.Frameworks, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Eclipse", SkillType = Skill.Type.Tools, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Visual Studio", SkillType = Skill.Type.Tools, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Watir", SkillType = Skill.Type.Tools, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "WatiN", SkillType = Skill.Type.Tools, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Agile software development", SkillType = Skill.Type.Paradigms, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Concurrent Programming", SkillType = Skill.Type.Paradigms, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Functional programming", SkillType = Skill.Type.Paradigms, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = ".NET", SkillType = Skill.Type.Platforms, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Android", SkillType = Skill.Type.Platforms, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "iOS", SkillType = Skill.Type.Platforms, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Solaris", SkillType = Skill.Type.Platforms, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Windows", SkillType = Skill.Type.Platforms, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Unix", SkillType = Skill.Type.Platforms, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "MySQL", SkillType = Skill.Type.Storage, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Microsoft SQL Server", SkillType = Skill.Type.Storage, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "MongoDB", SkillType = Skill.Type.Storage, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Cache", SkillType = Skill.Type.Storage, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Fiddler ", SkillType = Skill.Type.Tools, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "Single-page application", SkillType = Skill.Type.Misc, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "LDAP", SkillType = Skill.Type.Misc, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "singleton", SkillType = Skill.Type.Misc, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "NEW SKILL", SkillType = Skill.Type.Misc, SkillLevel = GetRandomSkillLvl() });
+            _skills.Add(new Skill() { Name = "JSP", SkillType = Skill.Type.Misc, SkillLevel = GetRandomSkillLvl() });
+            #endregion
         }
 
         public static Job Generate()
         {
+            log.Debug("Generating the random Job");
             string name = "job-" + Generator.GetEpochTime();
             bool timeZonePref = GetRandomBool();
             DateTime date = DateTime.Now;
@@ -32,7 +77,8 @@ namespace TopTal_Framework.Generators
                 _HoursOverlap = (timeZonePref) ? GetRandomHoursOverlap() : Job.HoursOverlap.NoPreference,
                 _DesiredStartDate = date,
                 _EstimatedLength = GetRandomEstimatedLength(),
-                _SpokenLanguages = GetRandomSpokenLanguages()
+                _SpokenLanguages = GetRandomSpokenLanguages(),
+                _Skills = GetRandomSkills()
             };
 
             LastGeneratedJob = job;
@@ -42,12 +88,14 @@ namespace TopTal_Framework.Generators
         #region Get Randoms
         private static int GetRandomPosition(int maxValue)
         {
+            Browser.ImplicitWait(200);// just to produce different results
             Random r = new Random();
             return r.Next(0, maxValue);
         }
 
         private static bool GetRandomBool()
         {
+            Browser.ImplicitWait(200);// just to produce different results
             Random r = new Random();
             return r.NextDouble() >= 0.5;
         }
@@ -119,6 +167,35 @@ namespace TopTal_Framework.Generators
             }
 
             return languages;
+        }
+
+        private static Skill.Level GetRandomSkillLvl()
+        {
+            int pos = GetRandomPosition(Enum.GetValues(typeof(Skill.Level)).Length);
+
+            int i = 0;
+            foreach (Skill.Level l in Enum.GetValues(typeof(Skill.Level)))
+            {
+                if (i == pos)
+                    return l;
+                else
+                    i++;
+            }
+
+            return Skill.Level.Strong;
+        }
+
+        private static List<Skill> GetRandomSkills()
+        {
+            int pos = GetRandomPosition((int)(_skills.Count / 3));
+            List<Skill> skills = new List<Skill>();
+                       if (pos == 0)
+                pos += 1;
+
+            for (int i = 0; i < _skills.Count; i += pos)
+                skills.Add(_skills[i]);
+
+            return skills;
         }
         #endregion
     }
@@ -321,6 +398,16 @@ namespace TopTal_Framework.Generators
         public DateTime _DesiredStartDate { get; set; }
         public EstimatedLength _EstimatedLength { get; set; }
         public List<SpokenLanguages> _SpokenLanguages { get; set; }
+        public List<Skill> _Skills { get; set; }
+    }
+
+    public class Skill
+    {
+        public enum Type { Languages, Frameworks, Libraries_APIs, Tools, Paradigms, Platforms, Storage, Misc }
+        public enum Level { Competent, Strong, Expert }
+        public string Name;
+        public Type SkillType;
+        public Level SkillLevel;
     }
     #endregion
 
