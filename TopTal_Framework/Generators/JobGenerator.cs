@@ -350,40 +350,40 @@ namespace TopTal_Framework.Generators
             [Value("No preference")]
             NoPreference,
 
-            [Value("0")]
+            [Value("1")]
             H_1,
 
-            [Value("1")]
+            [Value("2")]
             H_2,
 
-            [Value("2")]
+            [Value("3")]
             H_3,
 
-            [Value("3")]
+            [Value("4")]
             H_4,
 
-            [Value("4")]
+            [Value("5")]
             H_5,
 
-            [Value("5")]
+            [Value("6")]
             H_6,
 
-            [Value("6")]
+            [Value("7")]
             H_7,
 
-            [Value("7")]
+            [Value("8")]
             H_8,
 
-            [Value("8")]
+            [Value("9")]
             H_9,
 
-            [Value("9")]
+            [Value("10")]
             H_10,
 
-            [Value("10")]
+            [Value("11")]
             H_11,
 
-            [Value("11")]
+            [Value("12")]
             H_12,
         }
         #endregion

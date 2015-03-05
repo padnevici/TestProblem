@@ -127,10 +127,13 @@ namespace TopTal_Framework.BackendPages
         {
             if (job._TimeZonePreference)
             {
-                log.Debug(string.Format("Selecting hours overlap [{0}]", job._HoursOverlap));
-                SelectElement select = new SelectElement(hoursOfOverlapDropDown);
-                select.SelectByValue(job._HoursOverlap.GetValue());
-                Browser.ImplicitWait();
+                if (job._HoursOverlap != Job.HoursOverlap.NoPreference)
+                {
+                    log.Debug(string.Format("Selecting hours overlap [{0}]", job._HoursOverlap));
+                    SelectElement select = new SelectElement(hoursOfOverlapDropDown);
+                    select.SelectByValue(job._HoursOverlap.GetValue());
+                    Browser.ImplicitWait();
+                }
             }
         }
 
@@ -185,7 +188,7 @@ namespace TopTal_Framework.BackendPages
         {
             log.Info(string.Format("Removing all spoken languages"));
             List<IWebElement> elements = addedSpokenLanguages.FindElements(By.XPath("//div[@class='ui-tag has-select is-deletable js-language']/div[@class='ui-tag__delete_icon js-delete']")).ToList();
-            foreach(IWebElement element in elements)
+            foreach (IWebElement element in elements)
             {
                 element.Click();
                 Browser.ImplicitWait();

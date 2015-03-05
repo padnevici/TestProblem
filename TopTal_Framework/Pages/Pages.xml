@@ -36,6 +36,9 @@
       </requiredSkillsPage>
 
       <confirmPage name="Step 4 - Confirm" title ="Confirm">
+        <errorMsgs>
+          <errorMsg>You need to confirm this</errorMsg>
+        </errorMsgs>
       </confirmPage>
 
       <techCallPage name="Step 5 - Tech Call" title ="Tech Call">

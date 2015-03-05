@@ -62,6 +62,10 @@ namespace TopTal_TestCases
             Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
             Pages.BackendPages.NewJobWizardPages.RequiredSkills.IsAtStep();
             Pages.BackendPages.NewJobWizardPages.RequiredSkills.PassThisStep(job);
+            Pages.BackendPages.NewJobWizardPages.Confirm.IsAtStep();
+            Pages.BackendPages.NewJobWizardPages.Confirm.CheckForErrors();
+            Pages.BackendPages.NewJobWizardPages.Confirm.PassThisStep();
+            Pages.BackendPages.NewJobWizardPages.Confirm.PassThisStep();
         }
     }
 }

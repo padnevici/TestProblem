@@ -21,4 +21,10 @@
 - Created Skill object and added it to the job as new parameter.
 - Optimized the code for more stability during execution
 - Optimized the job generation method, in order to get more random details
+- Debugged a lot the described methods
+
+03/04/2015 [09:30 AM - 10:10 PM]
+- Added and described necessary methods for following page: job wizard - step 4
+- Fixed an issue in Job class (invalid vales for an Enum)
+
 regsvr32 AutoItX3.dll

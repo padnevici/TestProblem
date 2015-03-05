@@ -136,6 +136,7 @@ namespace TopTal_Framework
                 {
                     public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/confirmPage", "name"); } }
                     public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/confirmPage", "title"); } }
+                    public static string errorMsg { get { return PagesXML.Instance.GetValueByXPath("//backendPages/newJobWizardPage/confirmPage/errorMsgs/errorMsg"); } }
                 }
 
                 public class Step5_TechCall
