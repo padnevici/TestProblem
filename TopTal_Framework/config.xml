@@ -9,8 +9,9 @@
     <password>staging</password>
   </webProtection>
   <defaultAccount>
-    <username>slava.connectpal.com@mailinator.com</username>
+    <email>slava.connectpal.com@mailinator.com</email>
     <password>password</password>
+    <company>ConnectPal</company>
   </defaultAccount>
 </configs>
 

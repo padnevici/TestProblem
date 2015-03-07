@@ -70,7 +70,7 @@ namespace TopTal_Framework
             {
                 log.Debug("Found Authentication pop up. Passing it.");
                 AutoIT.WinActivate(title);
-                AutoIT.Send(Config.WebProtectionUser.Username);
+                AutoIT.Send(Config.WebProtectionUser.Email);
                 AutoIT.Send("{TAB}");
                 AutoIT.Send(Config.WebProtectionUser.Password);
                 AutoIT.Send("{ENTER}");

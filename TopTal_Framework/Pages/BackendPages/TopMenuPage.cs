@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
+using TopTal_Framework.Generators;
 
 namespace TopTal_Framework.BackendPages
 {
@@ -20,7 +21,7 @@ namespace TopTal_Framework.BackendPages
         protected IWebElement addNewJobBtn;
 
         [FindsBy(How = How.XPath, Using = "//header//div[contains(@class,'top_nav__user_name g-text_overflow')]")]
-        protected IWebElement userNameNav; 
+        protected IWebElement userNameNav;
         #endregion
 
         #region Click on
@@ -29,15 +30,17 @@ namespace TopTal_Framework.BackendPages
             log.Debug(string.Format("Clicking on [Add New Job] button"));
             addNewJobBtn.Click();
             Browser.ImplicitWait();
-        } 
+        }
         #endregion
 
         #region Checks
-        public bool IsLoggedIn()
+        public bool IsLoggedInAs(User user)
         {
-            log.Info(string.Format("Checking if logged in successfully"));
-            return userNameNav.ExistsAndDisplayed();
-        }  
+            log.Info(string.Format("Checking if logged in successfully as [{0}]", user.Email));
+            if (userNameNav.ExistsAndDisplayed())
+                return (userNameNav.Text.Trim().ToLower() == user.Company.Trim().ToLower());
+            return false;
+        }
         #endregion
     }
 }

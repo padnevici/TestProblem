@@ -17,7 +17,8 @@ namespace debugger
             TestCases tests = new TestCases();
             try
             {
-                tests.Test_01();
+                tests.TTC_01();
+                tests.TTC_02();
 
 
             }

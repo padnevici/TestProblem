@@ -67,9 +67,9 @@ namespace TopTal_Framework.SitePages
         #region Enter data
         private void EnterUserName(User user)
         {
-            log.Debug(string.Format("Entering user name [{0}]", user.Username));
+            log.Debug(string.Format("Entering user name [{0}]", user.Email));
             userNameFld.Clear();
-            userNameFld.SendKeys(user.Username);
+            userNameFld.SendKeys(user.Email);
         }
 
         private void EnterPassword(User user)
@@ -88,7 +88,7 @@ namespace TopTal_Framework.SitePages
 
         public void Login(User user, bool userRememberMe)
         {
-            log.Info(string.Format("Login as [{0} / {1} - Remember Me: {1}]", user.Username, user.Password, userRememberMe));
+            log.Info(string.Format("Login as [{0} / {1} - Remember Me: {1}]", user.Email, user.Password, userRememberMe));
             CheckIfCorrectPageAndNavigate();
             EnterUserName(user);
             EnterPassword(user);
@@ -99,6 +99,13 @@ namespace TopTal_Framework.SitePages
         #endregion
 
         #region Check if and do
+        public void CheckIfLogedIfNoThenLogin(User user)
+        {
+            log.Info(string.Format("Checking if [{0}] is alreade logged in", user.Email));
+            if (!Pages.BackendPages.TopMenu.IsLoggedInAs(user))
+                Pages.SitePages.Login.Login(user);
+        }
+
         private void CheckIfCorrectPageAndNavigate()
         {
             if (IsAt())

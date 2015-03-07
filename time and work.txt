@@ -23,8 +23,14 @@
 - Optimized the job generation method, in order to get more random details
 - Debugged a lot the described methods
 
-03/04/2015 [09:30 AM - 10:10 PM]
+03/04/2015 [09:30 PM - 10:10 PM]
 - Added and described necessary methods for following page: job wizard - step 4
 - Fixed an issue in Job class (invalid vales for an Enum)
+
+03/6/2015 [09:30 PM - 11:00 PM]
+- Added and described necessary methods for following page: job wizard - step 5
+- added additional method to the Login page object.
+- added more test cases to the test plan/ updated some info in old test cases.
+- automated and debugged ttc_1 and ttc_2
 
 regsvr32 AutoItX3.dll

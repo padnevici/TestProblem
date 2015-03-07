@@ -9,7 +9,7 @@ namespace TopTal_Framework
     [TestFixture]
     public class TestBase
     {
-        private static Log log = Log.Instance;
+        protected static Log log = Log.Instance;
 
         [TestFixtureSetUp]
         public static void Initialize()
@@ -27,6 +27,14 @@ namespace TopTal_Framework
         [TearDown]
         public static void TearDown()
         {
+        }
+
+        public static void DoInCaseOfError(Exception e)
+        {
+            Browser.TakeAScreenshot();
+            log.Error(e.Message); 
+            log.Error(e.StackTrace);
+            throw e;
         }
     }
 }

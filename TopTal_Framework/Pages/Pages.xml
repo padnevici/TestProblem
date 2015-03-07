@@ -20,7 +20,7 @@
         <errorMsgs>
           <emptyField>You can't leave this empty</emptyField>
         </errorMsgs>
-        </basicInfoPage>
+      </basicInfoPage>
 
       <detailsPage name="Step 2 - Details" title ="Details">
         <errorMsgs>
@@ -41,7 +41,10 @@
         </errorMsgs>
       </confirmPage>
 
-      <techCallPage name="Step 5 - Tech Call" title ="Tech Call">
+      <techCallPage name="Step 5 - What's next?" title ="What's next?">
+        <successMsgs>
+          <titleMsg>Congratulations — you've just added a new job!</titleMsg>
+        </successMsgs>
       </techCallPage>
     </newJobWizardPage>
   </backendPages>

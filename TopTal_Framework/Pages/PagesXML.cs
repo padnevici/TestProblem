@@ -143,6 +143,7 @@ namespace TopTal_Framework
                 {
                     public static string Name { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/techCallPage", "name"); } }
                     public static string Title { get { return PagesXML.Instance.GetAttributeByXPath("//backendPages/newJobWizardPage/techCallPage", "title"); } }
+                    public static string successTitle { get { return PagesXML.Instance.GetValueByXPath("//backendPages/newJobWizardPage/techCallPage/successMsgs/titleMsg"); } }
                 }
             }
         }

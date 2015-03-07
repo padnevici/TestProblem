@@ -65,9 +65,9 @@ namespace TopTal_Framework
             get { return Instance.GetValueByXPath("configs/mainBrowser"); }
         }
 
-        public static string DefaultUserName
+        public static string DefaultEmail
         {
-            get { return Instance.GetValueByXPath("configs/defaultAccount/username"); }
+            get { return Instance.GetValueByXPath("configs/defaultAccount/email"); }
         }
 
         public static string DefaultUserPassword
@@ -75,9 +75,14 @@ namespace TopTal_Framework
             get { return Instance.GetValueByXPath("configs/defaultAccount/password"); }
         }
 
+        public static string DefaultCompany
+        {
+            get { return Instance.GetValueByXPath("configs/defaultAccount/company"); }
+        }
+
         public static User DefaultUser
         {
-            get { return new User() { Username = DefaultUserName, Password = DefaultUserPassword }; }
+            get { return new User() { Email = DefaultEmail, Password = DefaultUserPassword, Company = DefaultCompany }; }
         }
 
         public static string WebProtectionUsrName
@@ -92,7 +97,7 @@ namespace TopTal_Framework
 
         public static User WebProtectionUser
         {
-            get { return new User() { Username = WebProtectionUsrName, Password = WebProtectionUsrPwd }; }
+            get { return new User() { Email = WebProtectionUsrName, Password = WebProtectionUsrPwd }; }
         }
         #endregion
     }

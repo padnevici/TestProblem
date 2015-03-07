@@ -82,6 +82,11 @@ namespace TopTal_Framework
                 {
                     get { return GetPage<NewJobWizardConfirmPage>(); }
                 }
+
+                public static NewJobWizardWhatIsNextPage WhatIsNext
+                {
+                    get { return GetPage<NewJobWizardWhatIsNextPage>(); }
+                }
             }
         } 
         #endregion
