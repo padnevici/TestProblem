@@ -60,7 +60,7 @@ namespace TopTal_Framework
         {
             webDriver.Manage().Window.Position = new System.Drawing.Point(0, 0);
             webDriver.Manage().Window.Maximize();
-            webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(sleepTime));
+            webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(5000));
         }
 
         private static void PassAuthentificationPopup(string title)

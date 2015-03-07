@@ -70,6 +70,7 @@ namespace TopTal_Framework.SitePages
             log.Debug(string.Format("Entering user name [{0}]", user.Email));
             userNameFld.Clear();
             userNameFld.SendKeys(user.Email);
+            Browser.ImplicitWait();
         }
 
         private void EnterPassword(User user)
@@ -77,6 +78,7 @@ namespace TopTal_Framework.SitePages
             log.Debug(string.Format("Entering user password [{0}]", user.Password));
             userPasswordFld.Clear();
             userPasswordFld.SendKeys(user.Password);
+            Browser.ImplicitWait();
         }
         #endregion
 
@@ -90,11 +92,11 @@ namespace TopTal_Framework.SitePages
         {
             log.Info(string.Format("Login as [{0} / {1} - Remember Me: {1}]", user.Email, user.Password, userRememberMe));
             CheckIfCorrectPageAndNavigate();
+            Browser.ImplicitWait(5000);// sometime scrits cannot find email field. Better solutions is to wait a little bit before login
             EnterUserName(user);
             EnterPassword(user);
             CheckRememberMe(userRememberMe);
             ClickLogin();
-            Browser.ImplicitWait();
         }
         #endregion
 

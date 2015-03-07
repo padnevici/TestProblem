@@ -189,7 +189,7 @@ namespace TopTal_Framework.Generators
         {
             int pos = GetRandomPosition((int)(_skills.Count / 3));
             List<Skill> skills = new List<Skill>();
-                       if (pos == 0)
+            if (pos == 0)
                 pos += 1;
 
             for (int i = 0; i < _skills.Count; i += pos)

@@ -34,6 +34,7 @@ namespace TopTal_Framework.BackendPages
 
         private string skillLvlDropDownXpath = "//*[@id='new_job--step_required_skills']//div[@data-name='{0}']//select";
         private string skillLvlCloseBtnXpath = "//*[@id='new_job--step_required_skills']//div[@data-name='{0}']//div[@class='ui-tag__delete_icon_inner']";
+        private string skillLableTypeXpath = "//*[@id='new_job--step_required_skills']//div[@data-name='{0}']/../../label";
 
         [FindsBy(How = How.XPath, Using = "//*[@id='new_job--step_required_skills']//div[@data-step='details']")]
         protected IWebElement backBtn;
@@ -68,7 +69,7 @@ namespace TopTal_Framework.BackendPages
         }
         #endregion
 
-        #region Enter/Select data
+        #region Enter/Select data/ Remove
         public void SelectSkillLvl(Skill skill)
         {
             log.Debug(string.Format("Selecting skill level for [{0} - {1}]", skill.Name, skill.SkillLevel));
@@ -83,8 +84,17 @@ namespace TopTal_Framework.BackendPages
         {
             log.Debug(string.Format("Entering skill name: [{0}]", skill.Name));
             skillNameTxtBox.Clear();
-            skillNameTxtBox.SendKeys(skill.Name);
+            Actions bulder = new Actions(Browser.WebDriver);
+            //skillNameTxtBox.SendKeys(skill.Name);
+            //skillNameTxtBox.SendKeys(Keys.Space);
+            //skillNameTxtBox.SendKeys(Keys.Backspace);
+            bulder.MoveToElement(skillNameTxtBox).SendKeys(skill.Name).SendKeys(Keys.Space).SendKeys(Keys.Backspace).Perform();
             Browser.ImplicitWait(1000);
+        }
+
+        public void EnterSkillNameAndSelect(Skill skill)
+        {
+            EnterSkillName(skill);
 
             string xpath = string.Format(itemInExpandedListXpath, skill.Name);
             IWebElement element;
@@ -101,6 +111,15 @@ namespace TopTal_Framework.BackendPages
             Browser.ImplicitWait();
         }
 
+        public void EnterSkills(Job job)
+        {
+            foreach (var skill in job._Skills)
+            {
+                EnterSkillNameAndSelect(skill);
+                SelectSkillLvl(skill);
+            }
+        }
+
         public void RemoveAddedSkill(Skill skill)
         {
             log.Debug(string.Format("Removing aded skill: [{0}]", skill.Name));
@@ -114,11 +133,7 @@ namespace TopTal_Framework.BackendPages
         public void PassThisStep(Job job)
         {
             log.Info(string.Format("Enter job details and passing this [{0}] step", PagesXML.BackEndPages.NewJobWizard.Step3_RequiredSkills.Name));
-            foreach (var skill in job._Skills)
-            {
-                EnterSkillName(skill);
-                SelectSkillLvl(skill);
-            }
+            EnterSkills(job);
             ClickOnNext();
         }
 
@@ -135,10 +150,34 @@ namespace TopTal_Framework.BackendPages
             // dissapears
             log.Info(string.Format("Checking if errors disappears"));
             Job job = JobGenerator.Generate();
-            EnterSkillName(job._Skills[0]);
+            EnterSkillNameAndSelect(job._Skills[0]);
             Assert.False(emptySkillErrMsg.ExistsAndDisplayed());
 
             log.Info(string.Format("Validation errors are appear/disappear correctly"));
+        }
+
+        public bool CheckSkillType(Skill skill)
+        {
+            log.Debug(string.Format("Checking if aded skill [{0}] is placed under correct skill type [{1}]", skill.Name, skill.SkillType));
+            string xpat = string.Format(skillLableTypeXpath, skill.Name);
+            IWebElement element = Browser.WebDriver.FindElement(By.XPath(xpat));
+            string label = element.Text.Trim();
+            Skill.Type skillType = (Skill.Type)Enum.Parse(typeof(Skill.Type), label.Replace("/", "_"));
+            return (skillType == skill.SkillType);
+        }
+
+        public bool CheckIfSkillIsPresent(Skill skill)
+        {
+            log.Info(string.Format("Check if following [{0}] skill is present", skill.Name));
+            string xpath = string.Format(skillLvlCloseBtnXpath, skill.Name);
+            try
+            {
+                IWebElement element = Browser.WebDriver.FindElement(By.XPath(xpath));
+                return element.ExistsAndDisplayed();
+            }
+            catch (Exception)
+            { }
+            return false;
         }
 
         public bool IsAtStep()

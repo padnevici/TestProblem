@@ -51,6 +51,8 @@ namespace TopTal_Framework.BackendPages
         [FindsBy(How = How.XPath, Using = "//*[@id='new_job--step_details']//div[@class='ui-tags js-suggests-multiple__items_container']")]
         private IWebElement addedSpokenLanguages;
 
+        string removeSpokenLangXpath = "//div[@class='ui-tag has-select is-deletable js-language']//input[@value='{0}']//preceding-sibling::*[1]";
+
         [FindsBy(How = How.XPath, Using = "//*[@id='new_job--step_details']//div[@class='base_error is-big is-new_job is-wide js-form__main_error']/span")]
         private IWebElement languagesErrMsg;
 
@@ -105,10 +107,13 @@ namespace TopTal_Framework.BackendPages
         public void SelectDesiredTimeZonePreference(Job job)
         {
             log.Debug(string.Format("Selecting time zone preference [{0}]", job._TimeZonePreference));
+            string js = "document.getElementById('{0}').click()";
+
             if (job._TimeZonePreference)
-                timeZonePreferenceYesRadioBtn.Click();
+                js = string.Format(js, timeZonePreferenceYesRadioBtn.GetAttribute("id"));
             else
-                timeZonePreferenceNoRadioBtn.Click();
+                js = string.Format(js, timeZonePreferenceNoRadioBtn.GetAttribute("id"));
+            Browser.ExecuteJS(js);
             Browser.ImplicitWait();
         }
 
@@ -158,10 +163,10 @@ namespace TopTal_Framework.BackendPages
             Browser.ImplicitWait();
         }
 
-        public void EnterLanguages(Job job)
+        public void EnterLanguages(List<Job.SpokenLanguages> languages)
         {
             log.Debug(string.Format("Entering spoken languages"));
-            foreach (Job.SpokenLanguages lang in job._SpokenLanguages)
+            foreach (Job.SpokenLanguages lang in languages)
             {
                 spokenLanguagesTxtBox.Clear();
                 spokenLanguagesTxtBox.SendKeys(lang.ToString());
@@ -180,10 +185,11 @@ namespace TopTal_Framework.BackendPages
             SelectHouseOverlap(job);
             EnterDesiredStartDate(job);
             SelectEstimatedLength(job);
-            EnterLanguages(job);
+            EnterLanguages(job._SpokenLanguages);
             ClickOnNext();
         }
 
+        #region Remove Languages
         public void RemoveAllSpokenLanguages()
         {
             log.Info(string.Format("Removing all spoken languages"));
@@ -195,7 +201,18 @@ namespace TopTal_Framework.BackendPages
             }
         }
 
+        public void RemoveAddedLanguage(Job.SpokenLanguages language)
+        {
+            log.Debug(string.Format("Removing aded language: [{0}]", language));
+            string xpath = string.Format(removeSpokenLangXpath, language);
+            IWebElement element = Browser.WebDriver.FindElement(By.XPath(xpath));
+            element.Click();
+            Browser.ImplicitWait();
+        }
+        #endregion
 
+
+        #region Checks
         public void CheckForErrors()
         {
             log.Info(string.Format("Checking for errors"));
@@ -213,7 +230,7 @@ namespace TopTal_Framework.BackendPages
             Job job = JobGenerator.Generate();
             EnterDesiredStartDate("INVALID");
             SelectEstimatedLength(job);
-            EnterLanguages(job);
+            EnterLanguages(job._SpokenLanguages);
             Assert.True(languagesErrMsg.ExistsAndDisplayed());
             Assert.False(desiredStartDateErrMsg.ExistsAndDisplayed());
             Assert.False(estimatedLengthErrMsg.ExistsAndDisplayed());
@@ -223,6 +240,20 @@ namespace TopTal_Framework.BackendPages
             Assert.AreEqual(PagesXML.BackEndPages.NewJobWizard.Step2_Details.InvalidDesiredStartDateErr, desiredStartDateErrMsg.Text.Trim());
 
             log.Info(string.Format("Validation errors are appear/disappear correctly"));
+        }
+
+        public bool CheckIfLanguageIsPresent(Job.SpokenLanguages language)
+        {
+            log.Info(string.Format("Check if following [{0}] language is present", language));
+            string xpath = string.Format(removeSpokenLangXpath, language);
+            try
+            {
+                IWebElement element = Browser.WebDriver.FindElement(By.XPath(xpath));
+                return element.ExistsAndDisplayed();
+            }
+            catch (Exception)
+            { }
+            return false;
         }
 
         public bool IsAtStep()
@@ -241,5 +272,6 @@ namespace TopTal_Framework.BackendPages
             log.Info(string.Format("Title for [{0}] page is not correct", PagesXML.BackEndPages.NewJobWizard.Step2_Details.Name));
             return false;
         }
+        #endregion
     }
 }

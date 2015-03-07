@@ -2,7 +2,6 @@
 <configs>
   <!--please use only Chrome, Firefox-->
   <mainBrowser>Firefox</mainBrowser>
-  <!-- /site/index should be included in url-->
   <defaultURL>http://staging.toptal.net</defaultURL>
   <webProtection>
     <username>toptal</username>
