@@ -29,8 +29,11 @@ namespace debugger
                 //tests.TTC_10();
                 //tests.TTC_11();
                 //tests.TTC_12();
-                tests.TTC_13();
-                tests.TTC_14();
+                //tests.TTC_13();
+                //tests.TTC_14();
+                //tests.TTC_15();
+                //tests.TTC_16();
+                tests.TTC_17();
 
             }
             catch (Exception e)

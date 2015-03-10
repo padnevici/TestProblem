@@ -417,5 +417,117 @@ namespace TopTal_TestCases
             }
         }
         #endregion
+
+        #region TTC_15
+        [Test]
+        public void TTC_15()
+        {
+            try
+            {
+                // prerequisites
+                log.Info("// prerequisites #ttc_15");
+                Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
+                Job job = JobGenerator.Generate();
+                Pages.BackendPages.TopMenu.ClickOnAddNewJob();
+                Pages.BackendPages.NewJobWizardPages.BasicInfo.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.IsAtStep());
+
+                //1 - 5
+                log.Info("//1 - 5");
+                Skill skillCompetenet = new Skill() { Name = "UncategorizedCompetenet", SkillType = Skill.Type.Misc, SkillLevel = Skill.Level.Competent };
+                Skill skillStrong = new Skill() { Name = "UncategorizedStrong", SkillType = Skill.Type.Misc, SkillLevel = Skill.Level.Strong };
+                Skill skillExpert = new Skill() { Name = "UncategorizedExpert", SkillType = Skill.Type.Misc, SkillLevel = Skill.Level.Expert };
+                job._Skills.Add(skillCompetenet);
+                job._Skills.Add(skillStrong);
+                job._Skills.Add(skillExpert);
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.Confirm.ClickOnBack();
+                foreach (var skill in job._Skills)
+                    Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckSkillLvl(skill));
+
+            }
+            catch (Exception e)
+            {
+                DoInCaseOfError(e);
+            }
+        }
+        #endregion
+
+        #region TTC_16
+        [Test]
+        public void TTC_16()
+        {
+            try
+            {
+                // prerequisites
+                log.Info("// prerequisites #ttc_16");
+                Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
+                Job job = JobGenerator.Generate();
+                Pages.BackendPages.TopMenu.ClickOnAddNewJob();
+                Pages.BackendPages.NewJobWizardPages.BasicInfo.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.PassThisStep(job);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.Confirm.IsAtStep());
+
+                //1 - 3
+                log.Info("//1 - 3");
+                Pages.BackendPages.NewJobWizardPages.Confirm.CheckForErrors();
+                Pages.BackendPages.NewJobWizardPages.Confirm.ClickOnNext();
+                Assert.True(Pages.BackendPages.NewJobWizardPages.WhatIsNext.IsAtStep());
+
+            }
+            catch (Exception e)
+            {
+                DoInCaseOfError(e);
+            }
+        }
+        #endregion
+
+        #region TTC_17
+        [Test]
+        public void TTC_17()
+        {
+            try
+            {
+                // prerequisites
+                log.Info("// prerequisites #ttc_17");
+                Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
+
+
+                //1 - 2
+                log.Info("//1 - 2");
+                Job job = JobGenerator.Generate();
+                Pages.BackendPages.TopMenu.ClickOnAddNewJob();
+                Pages.BackendPages.NewJobWizardPages.BasicInfo.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.PassThisStep(job);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.Confirm.IsAtStep());
+
+                //3
+                log.Info("//3");
+                Pages.BackendPages.NewJobWizardPages.Confirm.ClickOnBack();
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.ClickOnBack();
+                Pages.BackendPages.NewJobWizardPages.Details.ClickOnBack();
+                Assert.True(Pages.BackendPages.NewJobWizardPages.BasicInfo.IsAtStep());
+
+                //4
+                log.Info("//4");
+                Pages.BackendPages.NewJobWizardPages.BasicInfo.ClickOnNext();
+                Pages.BackendPages.NewJobWizardPages.Details.ClickOnNext();
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.ClickOnNext();
+
+                //5
+                log.Info("//5");
+                Pages.BackendPages.NewJobWizardPages.Confirm.PassThisStep();
+                Browser.ImplicitWait(1000);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.WhatIsNext.IsAtStep());
+            }
+            catch (Exception e)
+            {
+                DoInCaseOfError(e);
+            }
+        }
+        #endregion
     }
 }

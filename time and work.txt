@@ -33,4 +33,14 @@
 - added more test cases to the test plan/ updated some info in old test cases.
 - automated and debugged ttc_1 and ttc_2
 
+03/7/2015 [01:15 PM - 16:00 PM]
+- Fixed an issue with selecting radio buttons in Chrome browser
+- added Additional methods for Details and Required Skills page objects
+- Automated and debugged: ttc_3, ttc_4, ttc_5, ttc_6, ttc_9, ttc_10, ttc_11, ttc_12, ttc_13, ttc_14
+
+03/9/2015 [08:10 PM - 08:50 PM]
+- added additional method to the Required Skills page object.
+- Automated and debugged: ttc_15, ttc_16, ttc_17
+
+
 regsvr32 AutoItX3.dll

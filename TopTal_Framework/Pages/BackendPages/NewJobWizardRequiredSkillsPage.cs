@@ -85,9 +85,6 @@ namespace TopTal_Framework.BackendPages
             log.Debug(string.Format("Entering skill name: [{0}]", skill.Name));
             skillNameTxtBox.Clear();
             Actions bulder = new Actions(Browser.WebDriver);
-            //skillNameTxtBox.SendKeys(skill.Name);
-            //skillNameTxtBox.SendKeys(Keys.Space);
-            //skillNameTxtBox.SendKeys(Keys.Backspace);
             bulder.MoveToElement(skillNameTxtBox).SendKeys(skill.Name).SendKeys(Keys.Space).SendKeys(Keys.Backspace).Perform();
             Browser.ImplicitWait(1000);
         }
@@ -164,6 +161,16 @@ namespace TopTal_Framework.BackendPages
             string label = element.Text.Trim();
             Skill.Type skillType = (Skill.Type)Enum.Parse(typeof(Skill.Type), label.Replace("/", "_"));
             return (skillType == skill.SkillType);
+        }
+
+        public bool CheckSkillLvl(Skill skill)
+        {
+            log.Debug(string.Format("Checking if aded skill [{0}] has correct level [{0}]", skill.Name, skill.SkillLevel));
+            string xpat = string.Format(skillLvlDropDownXpath, skill.Name);
+            IWebElement element = Browser.WebDriver.FindElement(By.XPath(xpat));
+            SelectElement select = new SelectElement(element);
+            Skill.Level selectedLvl = (Skill.Level)Enum.Parse(typeof(Skill.Level), select.SelectedOption.Text.Trim());
+            return (selectedLvl == skill.SkillLevel);
         }
 
         public bool CheckIfSkillIsPresent(Skill skill)
