@@ -211,8 +211,13 @@ namespace TopTal_TestCases
             {
                 // prerequisites
                 log.Info("// prerequisites #ttc_7");
+                Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
+                Job job = JobGenerator.Generate();
+                Pages.BackendPages.NewJobWizardPages.BasicInfo.PassThisStep(job);
 
-                throw new NotImplementedException("Not implemented Yet");
+                //1
+                log.Info("//1");
+                List<CalendarDate> dates = Pages.BackendPages.NewJobWizardPages.Details.GetCurrentCalndarDates();
             }
             catch (Exception e)
             {
@@ -519,6 +524,84 @@ namespace TopTal_TestCases
 
                 //5
                 log.Info("//5");
+                Pages.BackendPages.NewJobWizardPages.Confirm.PassThisStep();
+                Browser.ImplicitWait(1000);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.WhatIsNext.IsAtStep());
+            }
+            catch (Exception e)
+            {
+                DoInCaseOfError(e);
+            }
+        }
+        #endregion
+
+        #region TTC_18
+        [Test]
+        public void TTC_18()
+        {
+            try
+            {
+                // prerequisites
+                log.Info("// prerequisites #ttc_18");
+                Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
+
+                //1 - 2
+                log.Info("//1 - 2");
+                Job job = JobGenerator.Generate();
+                Pages.BackendPages.TopMenu.ClickOnAddNewJob();
+                Pages.BackendPages.NewJobWizardPages.BasicInfo.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.PassThisStep(job);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.Confirm.IsAtStep());
+
+                //3
+                log.Info("//3");
+                Pages.BackendPages.NewJobWizardPages.Confirm.ClickOnBack();
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.ClickOnBack();
+                Pages.BackendPages.NewJobWizardPages.Details.ClickOnBack();
+                Assert.True(Pages.BackendPages.NewJobWizardPages.BasicInfo.IsAtStep());
+
+                //4
+                log.Info("//4");
+                Job updatedJob = JobGenerator.GenerateUpdate(job);
+                Pages.BackendPages.NewJobWizardPages.BasicInfo.PassThisStep(updatedJob);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.Details.IsAtStep());
+                Pages.BackendPages.NewJobWizardPages.Details.RemoveAllSpokenLanguages();
+                Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(updatedJob);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.IsAtStep());
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.PassThisStep(updatedJob);
+
+                //5
+                log.Info("//5");
+                Assert.True(Pages.BackendPages.NewJobWizardPages.Confirm.IsAtStep());
+                Pages.BackendPages.NewJobWizardPages.Confirm.PassThisStep();
+                Browser.ImplicitWait(1000);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.WhatIsNext.IsAtStep());
+            }
+            catch (Exception e)
+            {
+                DoInCaseOfError(e);
+            }
+        }
+        #endregion
+
+        #region TTC_19
+        [Test]
+        public void TTC_19()
+        {
+            try
+            {
+                // prerequisites
+                log.Info("// prerequisites #ttc_19");
+                Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
+
+                //1 - 3
+                log.Info("//1 - 3");
+                Job job = JobGenerator.Generate();
+                Pages.BackendPages.TopMenu.ClickOnAddNewJob();
+                Pages.BackendPages.NewJobWizardPages.BasicInfo.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.PassThisStep(job);
                 Pages.BackendPages.NewJobWizardPages.Confirm.PassThisStep();
                 Browser.ImplicitWait(1000);
                 Assert.True(Pages.BackendPages.NewJobWizardPages.WhatIsNext.IsAtStep());

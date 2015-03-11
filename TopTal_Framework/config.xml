@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configs>
   <!--please use only Chrome, Firefox-->
-  <mainBrowser>Firefox</mainBrowser>
+  <mainBrowser>Chrome</mainBrowser>
   <defaultURL>http://staging.toptal.net</defaultURL>
   <webProtection>
     <username>toptal</username>

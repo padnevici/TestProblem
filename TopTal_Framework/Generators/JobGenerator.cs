@@ -65,7 +65,7 @@ namespace TopTal_Framework.Generators
             string name = "job-" + Generator.GetEpochTime();
             bool timeZonePref = GetRandomBool();
             DateTime date = DateTime.Now;
-            date.AddDays(GetRandomPosition(10));
+            date = date.AddDays(GetRandomPosition(10));
 
             var job = new Job
             {
@@ -83,6 +83,29 @@ namespace TopTal_Framework.Generators
 
             LastGeneratedJob = job;
             return job;
+        }
+
+        public static Job GenerateUpdate(Job job)
+        {
+            log.Debug(string.Format("Generating the random update for {0} job", job._Title));
+            bool timeZonePref = GetRandomBool();
+
+            var jobUpdated = new Job
+            {
+                _Title = job._Title + "UPDATE",
+                _Description = job._Description + "UPDATE",
+                _WorkType = Job.WorkType.Remote,
+                _TimeZonePreference = timeZonePref,
+                _TimeZone = (timeZonePref) ? GetRandomTimeZone() : Job.TimeZones.Select_Time_Zone,
+                _HoursOverlap = (timeZonePref) ? GetRandomHoursOverlap() : Job.HoursOverlap.NoPreference,
+                _DesiredStartDate = job._DesiredStartDate.AddDays(GetRandomPosition(10)),
+                _EstimatedLength = GetRandomEstimatedLength(),
+                _SpokenLanguages = GetRandomSpokenLanguages(),
+                _Skills = GetRandomSkills()
+            };
+
+            LastGeneratedJob = jobUpdated;
+            return jobUpdated;
         }
 
         #region Get Randoms

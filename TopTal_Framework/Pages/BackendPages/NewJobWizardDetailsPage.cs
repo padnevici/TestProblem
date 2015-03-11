@@ -42,6 +42,18 @@ namespace TopTal_Framework.BackendPages
         [FindsBy(How = How.Id, Using = "new_job_start_date")]
         private IWebElement desiredStartDateTxtBox;
 
+        [FindsBy(How = How.XPath, Using = "//table[contains(@data-reactid,'.0.1.1.1.0')]//tr")]
+        private IWebElement calendarTableBody;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='panel__header']//div[@class='icon-chevron-left']")]
+        private IWebElement calendarLeftArwBtn;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='panel__header']//div[@class='pager__text calendar__month']")]
+        private IWebElement currentMonthYearLbl;
+
+        [FindsBy(How = How.XPath, Using = "//div[@class='panel__header']//div[@class='pager__arrow calendar__month__arrow-right']")]
+        private IWebElement calendarRightArwBtn;
+
         [FindsBy(How = How.Id, Using = "new_job_estimated_length")]
         private IWebElement estimatedLengthDropDown;
 
@@ -147,6 +159,10 @@ namespace TopTal_Framework.BackendPages
             EnterDesiredStartDate(job._DesiredStartDate.ToString("yyyy-MM-dd"));
         }
 
+        public void SelectDesiredStartDate(CalendarDate date)
+        {
+        }
+
         public void EnterDesiredStartDate(string date)
         {
             log.Debug(string.Format("Entering desired date [{0}]", date));
@@ -173,6 +189,41 @@ namespace TopTal_Framework.BackendPages
                 Browser.ImplicitWait();
                 spokenLanguagesTxtBox.SendKeys(Keys.Enter);
             }
+        }
+        #endregion
+
+        #region Get calendar dates
+        public List<CalendarDate> GetCurrentCalndarDates()
+        {
+            List<CalendarDate> dates = new List<CalendarDate>();
+
+            Actions builder = new Actions(Browser.WebDriver);
+            builder.MoveToElement(desiredStartDateTxtBox).Click().Perform();
+            Browser.ImplicitWait();
+            desiredStartDateTxtBox.Click();
+
+            Browser.WebDriver.FindElement(By.XPath("/html/body/div[5]")).Click();
+
+            string month = currentMonthYearLbl.Text.Trim().Split(' ')[0];
+            string year = currentMonthYearLbl.Text.Trim().Split(' ')[1];
+
+            List<IWebElement> elements = calendarTableBody.FindElements(By.TagName("td")).ToList();
+            foreach (IWebElement element in elements)
+            {
+                CalendarDate cDate = new CalendarDate()
+                {
+                    Disabled = (element.GetAttribute("class").Contains("dayDisabled")) ? true : false,
+                    Special = (element.GetAttribute("class").Contains("daySpecial")) ? true : false,
+                    Active = (element.GetAttribute("class").Contains("dayToday")) ? true : false,
+                    Today = (element.GetAttribute("class").Contains("dayActive")) ? true : false,
+                    Date = element.Text.Trim(),
+                    Month = month,
+                    Year = year
+                };
+                dates.Add(cDate);
+            }
+
+            return dates;
         }
         #endregion
 
@@ -210,7 +261,6 @@ namespace TopTal_Framework.BackendPages
             Browser.ImplicitWait();
         }
         #endregion
-
 
         #region Checks
         public void CheckForErrors()

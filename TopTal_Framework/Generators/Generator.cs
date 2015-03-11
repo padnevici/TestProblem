@@ -104,4 +104,15 @@ namespace TopTal_Framework.Generators
         public string Password { get; set; }
         public string Company { get; set; }
     }
+
+    public class CalendarDate
+    {
+        public bool Disabled;
+        public bool Special;
+        public bool Today;
+        public bool Active;
+        public string Date;
+        public string Month;
+        public string Year;
+    }
 }
