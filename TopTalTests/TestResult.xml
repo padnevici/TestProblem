@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\padne_000\OneDrive\Projects\TopTal_Framework\TopTalTests\TopTal_TestCases.dll" total="17" errors="0" failures="17" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2015-03-11" time="21:59:10">
+  <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.8009" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Users\padne_000\OneDrive\Projects\TopTal_Framework" machine-name="DREAM" user="padne_000" user-domain="DREAM" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Users\padne_000\OneDrive\Projects\TopTal_Framework\TopTalTests\TopTal_TestCases.dll" executed="True" result="Failure" success="False" time="19.712" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="TopTal_TestCases" executed="True" result="Failure" success="False" time="19.696" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="TestCases" executed="True" result="Error" success="False" time="19.692" asserts="0">
+            <failure>
+              <message><![CDATA[SetUp : System.InvalidOperationException : unknown error: cannot get automation extension
+from timeout: Timed out receiving message from renderer: -4.525
+  (Session info: chrome=40.0.2214.115)
+  (Driver info: chromedriver=2.14.313457 (3d645c400edf2e2c500566c9aa096063e707c9cf),platform=Windows NT 6.3 x86_64)]]></message>
+              <stack-trace><![CDATA[at OpenQA.Selenium.Remote.RemoteWebDriver.UnpackAndThrowOnError(Response errorResponse)
+at OpenQA.Selenium.Remote.RemoteWebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)
+at OpenQA.Selenium.Remote.RemoteWindow.set_Position(Point value)
+at TopTal_Framework.Browser.SetWindowSize()
+at TopTal_Framework.Browser.InitChrome()
+at TopTal_Framework.Browser.Initialize()
+at TopTal_Framework.TestBase.Initialize()
+]]></stack-trace>
+            </failure>
+            <results>
+              <test-case name="TopTal_TestCases.TestCases.TTC_01" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_02" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_03" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_04" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_05" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_06" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_07" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_08" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_09" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_10" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_11" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_12" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_13" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_14" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_15" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_16" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+              <test-case name="TopTal_TestCases.TestCases.TTC_17" executed="True" result="Failure" success="False" time="0.000" asserts="0">
+                <failure>
+                  <message><![CDATA[TestFixtureSetUp failed in TestCases]]></message>
+                  <stack-trace />
+                </failure>
+              </test-case>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

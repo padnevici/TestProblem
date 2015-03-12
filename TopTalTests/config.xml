@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configs>
+  <!--please use only Chrome, Firefox-->
+  <mainBrowser>Chrome</mainBrowser>
+  <defaultURL>http://staging.toptal.net</defaultURL>
+  <webProtection>
+    <username>toptal</username>
+    <password>staging</password>
+  </webProtection>
+  <defaultAccount>
+    <email>slava.connectpal.com@mailinator.com</email>
+    <password>password</password>
+    <company>ConnectPal</company>
+  </defaultAccount>
+</configs>
+
