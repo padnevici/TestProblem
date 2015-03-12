@@ -89,21 +89,21 @@ namespace TopTal_Framework.BackendPages
         {
             log.Debug(string.Format("Clicking on [Next] button"));
             nextBtn.Click();
-            Browser.ImplicitWait();
+            Browser.ImplicitWait(1000);
         }
 
         public void ClickOnCancel()
         {
             log.Debug(string.Format("Clicking on [Cancel] button"));
             cancelBtn.Click();
-            Browser.ImplicitWait();
+            Browser.ImplicitWait(1000);
         }
 
         public void ClickOnBack()
         {
             log.Debug(string.Format("Clicking on [Back] button"));
             backBtn.Click();
-            Browser.ImplicitWait();
+            Browser.ImplicitWait(1000);
         }
         #endregion
 
@@ -189,41 +189,6 @@ namespace TopTal_Framework.BackendPages
                 Browser.ImplicitWait();
                 spokenLanguagesTxtBox.SendKeys(Keys.Enter);
             }
-        }
-        #endregion
-
-        #region Get calendar dates
-        public List<CalendarDate> GetCurrentCalndarDates()
-        {
-            List<CalendarDate> dates = new List<CalendarDate>();
-
-            Actions builder = new Actions(Browser.WebDriver);
-            builder.MoveToElement(desiredStartDateTxtBox).Click().Perform();
-            Browser.ImplicitWait();
-            desiredStartDateTxtBox.Click();
-
-            Browser.WebDriver.FindElement(By.XPath("/html/body/div[5]")).Click();
-
-            string month = currentMonthYearLbl.Text.Trim().Split(' ')[0];
-            string year = currentMonthYearLbl.Text.Trim().Split(' ')[1];
-
-            List<IWebElement> elements = calendarTableBody.FindElements(By.TagName("td")).ToList();
-            foreach (IWebElement element in elements)
-            {
-                CalendarDate cDate = new CalendarDate()
-                {
-                    Disabled = (element.GetAttribute("class").Contains("dayDisabled")) ? true : false,
-                    Special = (element.GetAttribute("class").Contains("daySpecial")) ? true : false,
-                    Active = (element.GetAttribute("class").Contains("dayToday")) ? true : false,
-                    Today = (element.GetAttribute("class").Contains("dayActive")) ? true : false,
-                    Date = element.Text.Trim(),
-                    Month = month,
-                    Year = year
-                };
-                dates.Add(cDate);
-            }
-
-            return dates;
         }
         #endregion
 

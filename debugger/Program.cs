@@ -23,14 +23,14 @@ namespace debugger
                 //tests.TTC_04();
                 //tests.TTC_05();
                 //tests.TTC_06();
-                tests.TTC_07();
+                //tests.TTC_07();
                 //tests.TTC_08();
                 //tests.TTC_09();
                 //tests.TTC_10();
                 //tests.TTC_11();
                 //tests.TTC_12();
                 //tests.TTC_13();
-                //tests.TTC_14();
+                tests.TTC_14();
                 //tests.TTC_15();
                 //tests.TTC_16();
                 //tests.TTC_17();

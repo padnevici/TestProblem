@@ -213,11 +213,16 @@ namespace TopTal_TestCases
                 log.Info("// prerequisites #ttc_7");
                 Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
                 Job job = JobGenerator.Generate();
+                Pages.BackendPages.TopMenu.ClickOnAddNewJob();
                 Pages.BackendPages.NewJobWizardPages.BasicInfo.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.IsAtStep());
 
-                //1
-                log.Info("//1");
-                List<CalendarDate> dates = Pages.BackendPages.NewJobWizardPages.Details.GetCurrentCalndarDates();
+                //1 - 3
+                log.Info("//1 - 3");
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckForErrors();
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.ClickOnNext();
+                Assert.True(Pages.BackendPages.NewJobWizardPages.Confirm.IsAtStep());
             }
             catch (Exception e)
             {
@@ -233,9 +238,21 @@ namespace TopTal_TestCases
             try
             {
                 // prerequisites
-                log.Info("// prerequisites #ttc_8");
+                log.Info("// prerequisites #ttc_08");
+                Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
+                Job job = JobGenerator.Generate();
+                Pages.BackendPages.TopMenu.ClickOnAddNewJob();
+                Pages.BackendPages.NewJobWizardPages.BasicInfo.PassThisStep(job);
+                Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.IsAtStep());
 
-                throw new NotImplementedException("Not implemented Yet");
+                //1 - 3
+                log.Info("//1 - 3");
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.EnterSkills(job);
+                foreach (var skill in job._Skills)
+                {
+                    Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckSkillType(skill));
+                }
             }
             catch (Exception e)
             {
@@ -251,7 +268,7 @@ namespace TopTal_TestCases
             try
             {
                 // prerequisites
-                log.Info("// prerequisites #ttc_9");
+                log.Info("// prerequisites #ttc_09");
                 Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
                 Job job = JobGenerator.Generate();
                 Pages.BackendPages.TopMenu.ClickOnAddNewJob();
@@ -261,9 +278,12 @@ namespace TopTal_TestCases
 
                 //1 - 3
                 log.Info("//1 - 3");
-                Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckForErrors();
-                Pages.BackendPages.NewJobWizardPages.RequiredSkills.ClickOnNext();
-                Assert.True(Pages.BackendPages.NewJobWizardPages.Confirm.IsAtStep());
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.EnterSkills(job);
+                foreach (var skill in job._Skills)
+                {
+                    Pages.BackendPages.NewJobWizardPages.RequiredSkills.RemoveAddedSkill(skill);
+                    Assert.False(Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckIfSkillIsPresent(skill));
+                }
             }
             catch (Exception e)
             {
@@ -291,9 +311,11 @@ namespace TopTal_TestCases
                 log.Info("//1 - 3");
                 Pages.BackendPages.NewJobWizardPages.RequiredSkills.EnterSkills(job);
                 foreach (var skill in job._Skills)
-                {
-                    Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckSkillType(skill));
-                }
+                    Pages.BackendPages.NewJobWizardPages.RequiredSkills.RemoveAddedSkill(skill);
+
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.EnterSkills(job);
+                foreach (var skill in job._Skills)
+                    Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckIfSkillIsPresent(skill));
             }
             catch (Exception e)
             {
@@ -317,14 +339,11 @@ namespace TopTal_TestCases
                 Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
                 Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.IsAtStep());
 
-                //1 - 3
-                log.Info("//1 - 3");
-                Pages.BackendPages.NewJobWizardPages.RequiredSkills.EnterSkills(job);
-                foreach (var skill in job._Skills)
-                {
-                    Pages.BackendPages.NewJobWizardPages.RequiredSkills.RemoveAddedSkill(skill);
-                    Assert.False(Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckIfSkillIsPresent(skill));
-                }
+                //1 - 2
+                log.Info("//1 - 2");
+                Skill skill = new Skill() { Name = "Uncategorized", SkillType = Skill.Type.Misc, SkillLevel = Skill.Level.Strong };
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.EnterSkillNameAndSelect(skill);
+                Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckSkillType(skill));
             }
             catch (Exception e)
             {
@@ -350,13 +369,11 @@ namespace TopTal_TestCases
 
                 //1 - 3
                 log.Info("//1 - 3");
-                Pages.BackendPages.NewJobWizardPages.RequiredSkills.EnterSkills(job);
-                foreach (var skill in job._Skills)
-                    Pages.BackendPages.NewJobWizardPages.RequiredSkills.RemoveAddedSkill(skill);
-
-                Pages.BackendPages.NewJobWizardPages.RequiredSkills.EnterSkills(job);
-                foreach (var skill in job._Skills)
-                    Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckIfSkillIsPresent(skill));
+                Skill skill = new Skill() { Name = "Uncategorized", SkillType = Skill.Type.Misc, SkillLevel = Skill.Level.Strong };
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.EnterSkillName(skill);
+                Pages.BackendPages.NewJobWizardPages.RequiredSkills.ClickOnNext();
+                Pages.BackendPages.NewJobWizardPages.Confirm.ClickOnBack();
+                Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckSkillType(skill));
             }
             catch (Exception e)
             {
@@ -373,64 +390,6 @@ namespace TopTal_TestCases
             {
                 // prerequisites
                 log.Info("// prerequisites #ttc_13");
-                Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
-                Job job = JobGenerator.Generate();
-                Pages.BackendPages.TopMenu.ClickOnAddNewJob();
-                Pages.BackendPages.NewJobWizardPages.BasicInfo.PassThisStep(job);
-                Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
-                Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.IsAtStep());
-
-                //1 - 2
-                log.Info("//1 - 2");
-                Skill skill = new Skill() { Name = "Uncategorized", SkillType = Skill.Type.Misc, SkillLevel = Skill.Level.Strong };
-                Pages.BackendPages.NewJobWizardPages.RequiredSkills.EnterSkillNameAndSelect(skill);
-                Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckSkillType(skill));
-            }
-            catch (Exception e)
-            {
-                DoInCaseOfError(e);
-            }
-        }
-        #endregion
-
-        #region TTC_14
-        [Test]
-        public void TTC_14()
-        {
-            try
-            {
-                // prerequisites
-                log.Info("// prerequisites #ttc_14");
-                Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
-                Job job = JobGenerator.Generate();
-                Pages.BackendPages.TopMenu.ClickOnAddNewJob();
-                Pages.BackendPages.NewJobWizardPages.BasicInfo.PassThisStep(job);
-                Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
-                Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.IsAtStep());
-
-                //1 - 3
-                log.Info("//1 - 3");
-                Skill skill = new Skill() { Name = "Uncategorized", SkillType = Skill.Type.Misc, SkillLevel = Skill.Level.Strong };
-                Pages.BackendPages.NewJobWizardPages.RequiredSkills.EnterSkillName(skill);
-                Pages.BackendPages.NewJobWizardPages.RequiredSkills.ClickOnNext();
-                Pages.BackendPages.NewJobWizardPages.Confirm.ClickOnBack();
-                Assert.True(Pages.BackendPages.NewJobWizardPages.RequiredSkills.CheckSkillType(skill));
-            }
-            catch (Exception e)
-            {
-                DoInCaseOfError(e);
-            }
-        }
-        #endregion
-
-        #region TTC_15
-        [Test]
-        public void TTC_15()
-        {
-            try
-            {
-                // prerequisites
-                log.Info("// prerequisites #ttc_15");
                 Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
                 Job job = JobGenerator.Generate();
                 Pages.BackendPages.TopMenu.ClickOnAddNewJob();
@@ -459,14 +418,14 @@ namespace TopTal_TestCases
         }
         #endregion
 
-        #region TTC_16
+        #region TTC_14
         [Test]
-        public void TTC_16()
+        public void TTC_14()
         {
             try
             {
                 // prerequisites
-                log.Info("// prerequisites #ttc_16");
+                log.Info("// prerequisites #ttc_14");
                 Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
                 Job job = JobGenerator.Generate();
                 Pages.BackendPages.TopMenu.ClickOnAddNewJob();
@@ -489,14 +448,14 @@ namespace TopTal_TestCases
         }
         #endregion
 
-        #region TTC_17
+        #region TTC_15
         [Test]
-        public void TTC_17()
+        public void TTC_15()
         {
             try
             {
                 // prerequisites
-                log.Info("// prerequisites #ttc_17");
+                log.Info("// prerequisites #ttc_15");
                 Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
 
 
@@ -535,14 +494,14 @@ namespace TopTal_TestCases
         }
         #endregion
 
-        #region TTC_18
+        #region TTC_16
         [Test]
-        public void TTC_18()
+        public void TTC_16()
         {
             try
             {
                 // prerequisites
-                log.Info("// prerequisites #ttc_18");
+                log.Info("// prerequisites #ttc_16");
                 Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
 
                 //1 - 2
@@ -575,7 +534,6 @@ namespace TopTal_TestCases
                 log.Info("//5");
                 Assert.True(Pages.BackendPages.NewJobWizardPages.Confirm.IsAtStep());
                 Pages.BackendPages.NewJobWizardPages.Confirm.PassThisStep();
-                Browser.ImplicitWait(1000);
                 Assert.True(Pages.BackendPages.NewJobWizardPages.WhatIsNext.IsAtStep());
             }
             catch (Exception e)
@@ -585,14 +543,14 @@ namespace TopTal_TestCases
         }
         #endregion
 
-        #region TTC_19
+        #region TTC_17
         [Test]
-        public void TTC_19()
+        public void TTC_17()
         {
             try
             {
                 // prerequisites
-                log.Info("// prerequisites #ttc_19");
+                log.Info("// prerequisites #ttc_17");
                 Pages.SitePages.Login.CheckIfLogedIfNoThenLogin(Config.DefaultUser);
 
                 //1 - 3
@@ -603,7 +561,6 @@ namespace TopTal_TestCases
                 Pages.BackendPages.NewJobWizardPages.Details.PassThisStep(job);
                 Pages.BackendPages.NewJobWizardPages.RequiredSkills.PassThisStep(job);
                 Pages.BackendPages.NewJobWizardPages.Confirm.PassThisStep();
-                Browser.ImplicitWait(1000);
                 Assert.True(Pages.BackendPages.NewJobWizardPages.WhatIsNext.IsAtStep());
             }
             catch (Exception e)

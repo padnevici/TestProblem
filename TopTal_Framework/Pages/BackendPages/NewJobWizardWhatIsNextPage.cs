@@ -36,7 +36,7 @@ namespace TopTal_Framework.BackendPages
         {
             log.Debug(string.Format("Clicking on [Back] button"));
             jumbToJobBtn.Click();
-            Browser.ImplicitWait();
+            Browser.ImplicitWait(1000);
         }
         #endregion
 
@@ -44,7 +44,7 @@ namespace TopTal_Framework.BackendPages
         public bool IsAtStep()
         {
             log.Info(string.Format("Checking title for [{0}] page", PagesXML.BackEndPages.NewJobWizard.Step5_TechCall.Name));
-
+            Browser.ImplicitWait(2000);
             if (stepTitle.ExistsAndDisplayed())
             {
                 bool resultStepTitle = stepTitle.Text.Contains(string.Format(PagesXML.BackEndPages.NewJobWizard.Step5_TechCall.Title));

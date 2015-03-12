@@ -48,14 +48,14 @@ namespace TopTal_Framework.BackendPages
         {
             log.Debug(string.Format("Clicking on [Next] button"));
             nextBtn.Click();
-            Browser.ImplicitWait();
+            Browser.ImplicitWait(1000);
         }
 
         public void ClickOnCancel()
         {
             log.Debug(string.Format("Clicking on [Cancel] button"));
             cancelBtn.Click();
-            Browser.ImplicitWait();
+            Browser.ImplicitWait(1000);
         }
         #endregion
 

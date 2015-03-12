@@ -46,13 +46,17 @@ namespace TopTal_Framework.BackendPages
         #endregion
 
         #region Click on
+        private string _js = "document.getElementById('{0}').click()";
+
         public void ClickTopTalReview()
         {
             if (!reviewCheckBox.Selected)
                 log.Debug(string.Format("Checking on [TopTal will review] checkbox"));
             else
                 log.Debug(string.Format("Unchecking on [TopTal will review] checkbox"));
-            reviewCheckBox.Click();
+
+            string js = string.Format(_js, reviewCheckBox.GetAttribute("id"));
+            Browser.ExecuteJS(js);
             Browser.ImplicitWait();
         }
 
@@ -62,7 +66,9 @@ namespace TopTal_Framework.BackendPages
                 log.Debug(string.Format("Checking on [Deposit] checkbox"));
             else
                 log.Debug(string.Format("Unchecking on [Deposit] checkbox"));
-            depositCheckBox.Click();
+
+            string js = string.Format(_js, depositCheckBox.GetAttribute("id"));
+            Browser.ExecuteJS(js);
             Browser.ImplicitWait();
         }
 
@@ -72,7 +78,9 @@ namespace TopTal_Framework.BackendPages
                 log.Debug(string.Format("Checking on [3 days for interview] checkbox"));
             else
                 log.Debug(string.Format("Unchecking on [3 days for interview] checkbox"));
-            interviewCheckBox.Click();
+
+            string js = string.Format(_js, interviewCheckBox.GetAttribute("id"));
+            Browser.ExecuteJS(js);
             Browser.ImplicitWait();
         }
 
@@ -80,21 +88,21 @@ namespace TopTal_Framework.BackendPages
         {
             log.Debug(string.Format("Clicking on [Back] button"));
             backBtn.Click();
-            Browser.ImplicitWait();
+            Browser.ImplicitWait(1000);
         }
 
         public void ClickOnNext()
         {
             log.Debug(string.Format("Clicking on [Next] button"));
             nextBtn.Click();
-            Browser.ImplicitWait();
+            Browser.ImplicitWait(1000);
         }
 
         public void ClickOnCancel()
         {
             log.Debug(string.Format("Clicking on [Cancel] button"));
             cancelBtn.Click();
-            Browser.ImplicitWait();
+            Browser.ImplicitWait(1000);
         }
         #endregion
 
