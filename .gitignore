@@ -154,3 +154,9 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+/packages/WebDriver.ChromeDriver.win32.2.14.0.0
+/packages/log4net.2.0.3
+/packages/NUnit.2.6.4
+/packages/NUnit.Runners.2.6.4
+/packages/Selenium.Support.2.45.0
+/packages/Selenium.WebDriver.2.45.0
