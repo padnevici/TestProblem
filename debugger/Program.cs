@@ -17,7 +17,7 @@ namespace debugger
             TestCases tests = new TestCases();
             try
             {
-                //tests.TTC_01();
+                tests.TTC_01();
                 //tests.TTC_02();
                 //tests.TTC_03();
                 //tests.TTC_04();
@@ -30,7 +30,7 @@ namespace debugger
                 //tests.TTC_11();
                 //tests.TTC_12();
                 //tests.TTC_13();
-                tests.TTC_14();
+                //tests.TTC_14();
                 //tests.TTC_15();
                 //tests.TTC_16();
                 //tests.TTC_17();
