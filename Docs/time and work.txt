@@ -1,0 +1,60 @@
+02/27/2015 [09:40 PM - 11:20 PM]
+- Created structure of framework (Logger, framework and test case executer)
+- Created config file for already known values like (user, password and url of env. this is need for avoiding hard coding) 
+- Added whole project to the Version Control (GIT local padnevici/padnevici@gmail.com - master branch)
+
+02/28/2015 [04:00 PM - 10:00 PM]
+- Found Solution for Authentification Popup window
+- Added and described necessary methods for following pages: Home, TopNavigation, Login.
+- Added an XML file with details for each page.
+- Create test cases as test plan which will be followed during automation.
+
+03/01/2015 [10:00 AM - 01:00 PM, 07:00 PM - 09:30 PM]
+- Added and described necessary methods for following pages: home dashboard, jobs, new job wizard - step 1, Top Navigation, Left menu navigation.
+- Added more parameters for Job object. Updated Job generator method per new added props
+
+03/02/2015 [09:00 AM - 10:30 PM]
+- Added and described necessary methods for following page: job wizard - step 2 (not fully, to be added more)
+
+03/03/2015 [08:30 AM - 11:00 PM]
+- Added and described necessary methods for following page: job wizard - step 3
+- Created Skill object and added it to the job as new parameter.
+- Optimized the code for more stability during execution
+- Optimized the job generation method, in order to get more random details
+- Debugged a lot the described methods
+
+03/04/2015 [09:30 PM - 10:10 PM]
+- Added and described necessary methods for following page: job wizard - step 4
+- Fixed an issue in Job class (invalid vales for an Enum)
+
+03/6/2015 [09:30 PM - 11:00 PM]
+- Added and described necessary methods for following page: job wizard - step 5
+- added additional method to the Login page object.
+- added more test cases to the test plan/ updated some info in old test cases.
+- automated and debugged ttc_1 and ttc_2
+
+03/7/2015 [01:15 PM - 16:00 PM]
+- Fixed an issue with selecting radio buttons in Chrome browser
+- added Additional methods for Details and Required Skills page objects
+- Automated and debugged: ttc_3, ttc_4, ttc_5, ttc_6, ttc_9, ttc_10, ttc_11, ttc_12, ttc_13, ttc_14
+
+03/9/2015 [08:10 PM - 08:50 PM]
+- added additional method to the Required Skills page object.
+- Automated and debugged: ttc_15, ttc_16, ttc_17
+
+03/10/2015 [07:40 PM - 10:10 PM]
+- tried to find a solution with jquery datepicker. This control is not working at all when browser is loaded by selenium.
+- Automated and debugged: ttc_18, ttc_19
+
+
+03/10/2015 [09:00 PM - 12:5 PM]
+- Added nUnit to the project
+- Fixed some errors for Chrome browser. Selenium was not able to click on some elements
+- Added some timeouts, to increase stability of execution
+- restructured the project folder. Located nUnit, AutoIt and built folder outside of solution folder.
+- added xcopy commands to copy all necessary files to one directory.
+- added bat file for registering the AutoIt dll
+- added bath file to run tests.
+- Removed test cases/methods related to the datepicker (calendar). The calendar was removed from the page.
+- run several times all tests on Chrome and Firefox browsers.
+- Added How To description
