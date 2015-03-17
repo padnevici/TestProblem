@@ -5,8 +5,8 @@
 3. Check TopTalTests folder which is placed outside of solution folder.
 
 #### How to run test cases ####
-1. Before being able to run test you will need to register in your system following dll: AutoItX3.dll. To do that you need to run RegisterAutoIt.bat file as Administrator user. It is very important to run this bat file as Administrator. This can be done by right clicking on bat file and select run as Administrator.
-2. Now you can run tests. To do that you need to run RunTests.bat file.
+1. Before being able to run test you will need to register in your system following dll: AutoItX3.dll. To do that you need to run TopTalTests/localLyb/RegisterAutoIt.bat file as Administrator user. It is very important to run this bat file as Administrator. This can be done by right clicking on bat file and select run as Administrator.
+2. Now you can run tests. To do that you need to run TopTalTests/RunTests.bat file.
 
 #### How to configure browser ####
 Test cases can be run on two browser (Chrome and Firefox). So to specify on which browser you would like to test you will need to do following:
