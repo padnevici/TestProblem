@@ -10,7 +10,6 @@ using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using System;
 using Logger;
-using AutoItX3Lib;
 using System.Runtime.InteropServices;
 using TopTal_Framework.Generators;
 using System.IO;
