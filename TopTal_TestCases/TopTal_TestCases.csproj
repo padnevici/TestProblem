@@ -69,7 +69,6 @@ xcopy /y $(ProjectDir)$(OutDir)*.bat $(SolutionDir)..\TopTalTests\
 xcopy /y $(ProjectDir)$(OutDir)*.txt $(SolutionDir)..\TopTalTests\
 xcopy /y $(ProjectDir)$(OutDir)Pages\*.xml $(SolutionDir)..\TopTalTests\Pages\
 xcopy /y $(ProjectDir)$(OutDir)*.exe $(SolutionDir)..\TopTalTests\
-xcopy /y $(SolutionDir)localLyb\* $(SolutionDir)..\TopTalTests\localLyb\ /s /i
 xcopy /y "$(SolutionDir)Docs\How To Run.txt" $(SolutionDir)..\TopTalTests\
 xcopy /y $(SolutionDir)packages\NUnit.Runners.2.6.4 $(SolutionDir)..\TopTalTests\packages\NUnit.Runners.2.6.4\ /s /i
 </PostBuildEvent>

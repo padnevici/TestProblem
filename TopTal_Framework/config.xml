@@ -2,7 +2,7 @@
 <configs>
   <!--please use only Chrome, Firefox-->
   <mainBrowser>Chrome</mainBrowser>
-  <defaultURL>http://staging.toptal.net</defaultURL>
+  <defaultURL>https://toptal:staging@staging.toptal.net/users/login</defaultURL>
   <webProtection>
     <username>toptal</username>
     <password>staging</password>

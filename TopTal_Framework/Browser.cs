@@ -1,15 +1,19 @@
 ﻿using OpenQA.Selenium;
+using System.Net;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using System;
 using Logger;
 using AutoItX3Lib;
 using System.Runtime.InteropServices;
 using TopTal_Framework.Generators;
+using System.IO;
 
 namespace TopTal_Framework
 {
@@ -39,21 +43,19 @@ namespace TopTal_Framework
         private static void InitChrome()
         {
             webDriver = new ChromeDriver();
+            Init();
+        }
+
+        private static void Init()
+        {
+            Goto(Config.DefaultURL);
             SetWindowSize();
-            GotoEnv();
-            PassAuthentificationPopup("staging.toptal.net - Google Chrome");
-            PassAuthentificationPopup("Toptal: Top Developers, Custom Software Development - Google Chrome");
-            Pages.SitePages.Home.CheckAndCloseAddPopup();
         }
 
         private static void InitFirefox()
         {
             webDriver = new FirefoxDriver();
-            SetWindowSize();
-            GotoEnv();
-            PassAuthentificationPopup("Authentication Required");
-            PassAuthentificationPopup("Authentication Required");
-            Pages.SitePages.Home.CheckAndCloseAddPopup();
+            Init();
         }
 
         private static void SetWindowSize()
@@ -61,37 +63,6 @@ namespace TopTal_Framework
             webDriver.Manage().Window.Position = new System.Drawing.Point(0, 0);
             webDriver.Manage().Window.Maximize();
             webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(5000));
-        }
-
-        private static void PassAuthentificationPopup(string title)
-        {
-            var AutoIT = new AutoItX3();
-            if (AutoIT.WinWait(title, "", 10) != 0)
-            {
-                log.Debug("Found Authentication pop up. Passing it.");
-                AutoIT.WinActivate(title);
-                AutoIT.Send(Config.WebProtectionUser.Email);
-                AutoIT.Send("{TAB}");
-                AutoIT.Send(Config.WebProtectionUser.Password);
-                AutoIT.Send("{ENTER}");
-                Browser.ImplicitWait(5000);
-            }
-            else
-                log.Debug("The Authentication pop up is not found");
-        }
-
-        private static void GotoEnv()
-        {
-            WebDriver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(10));
-            try
-            {
-                log.Info(string.Format("Navigating to: {0}", Config.DefaultURL));
-                webDriver.Navigate().GoToUrl(Config.DefaultURL);
-                ImplicitWait();
-            }
-            catch (Exception e)
-            { }
-            WebDriver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(-1));
         }
 
         public static string Title

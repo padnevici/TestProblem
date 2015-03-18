@@ -51,6 +51,9 @@
   <ItemGroup>
     <Compile Include="Browser.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Downloader.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Extensions.cs" />
     <Compile Include="Generators\JobGenerator.cs" />
     <Compile Include="Generators\Generator.cs" />
@@ -92,17 +95,6 @@
       <Project>{aea91865-2555-45b5-8516-a00b471de20a}</Project>
       <Name>Logger</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="AutoItX3Lib">
-      <Guid>{F8937E53-D444-4E71-9275-35B64210CC3B}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

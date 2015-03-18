@@ -174,6 +174,8 @@ namespace TopTal_Framework.BackendPages
         public void SelectEstimatedLength(Job job)
         {
             log.Debug(string.Format("Selecting estimate length [{0}]", job._EstimatedLength));
+            Actions builder = new Actions(Browser.WebDriver);
+            builder.MoveToElement(estimatedLengthDropDown).Click().Perform();
             SelectElement select = new SelectElement(estimatedLengthDropDown);
             select.SelectByValue(job._EstimatedLength.GetValue());
             Browser.ImplicitWait();
