@@ -63,15 +63,14 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y $(ProjectDir)$(OutDir)*.dll $(SolutionDir)..\TopTalTests\
-xcopy /y $(ProjectDir)$(OutDir)*.xml $(SolutionDir)..\TopTalTests\
-xcopy /y $(ProjectDir)$(OutDir)*.bat $(SolutionDir)..\TopTalTests\
-xcopy /y $(ProjectDir)$(OutDir)*.txt $(SolutionDir)..\TopTalTests\
-xcopy /y $(ProjectDir)$(OutDir)Pages\*.xml $(SolutionDir)..\TopTalTests\Pages\
-xcopy /y $(ProjectDir)$(OutDir)*.exe $(SolutionDir)..\TopTalTests\
-xcopy /y "$(SolutionDir)Docs\How To Run.txt" $(SolutionDir)..\TopTalTests\
-xcopy /y $(SolutionDir)packages\NUnit.Runners.2.6.4 $(SolutionDir)..\TopTalTests\packages\NUnit.Runners.2.6.4\ /s /i
-</PostBuildEvent>
+    <PostBuildEvent>xcopy /y "$(ProjectDir)$(OutDir)*.dll" "$(SolutionDir)..\TopTalTests\"
+xcopy /y "$(ProjectDir)$(OutDir)*.xml" "$(SolutionDir)..\TopTalTests\"
+xcopy /y "$(ProjectDir)$(OutDir)*.bat" "$(SolutionDir)..\TopTalTests\"
+xcopy /y "$(ProjectDir)$(OutDir)*.txt" "$(SolutionDir)..\TopTalTests\"
+xcopy /y "$(ProjectDir)$(OutDir)Pages\*.xml" "$(SolutionDir)..\TopTalTests\Pages\"
+xcopy /y "$(ProjectDir)$(OutDir)*.exe" "$(SolutionDir)..\TopTalTests\"
+xcopy /y ""$(SolutionDir)Docs\How To Run.txt" "$(SolutionDir)..\TopTalTests\"
+xcopy /y "$(SolutionDir)packages\NUnit.Runners.2.6.4" "$(SolutionDir)..\TopTalTests\packages\NUnit.Runners.2.6.4\" /s /i</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
